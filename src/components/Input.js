@@ -1,4 +1,5 @@
 import React from "react";
+
 function Input({ label, type, name, value, onChange, error, onBlur,onFocus, placeholder }) {
   return (
     <div >

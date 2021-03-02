@@ -1,0 +1,15 @@
+button {
+    border: none;
+    background: none;
+    font-size: 1rem;
+    letter-spacing: -0.39px;
+    text-align: center;
+    outline: none;
+    padding: 0 1.5rem;
+    color: black;
+
+}
+
+.active {
+    color: red;
+  }
