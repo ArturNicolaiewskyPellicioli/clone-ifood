@@ -11,12 +11,14 @@ import EditProfile from '../pages/Profile/EditProfile'
 import EditAddress from '../pages/Profile/Address/EditAddress'
 
 import Feed from '../pages/Feed';
+import Header from '../components/Header/Header'
 
 
 const Router = () => {
     
     return (
         <BrowserRouter>
+            <Header/>
             <Switch>
                 <Route exact path="/">
                     <Login />

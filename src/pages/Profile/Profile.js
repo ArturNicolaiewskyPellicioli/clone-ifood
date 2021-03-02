@@ -11,7 +11,9 @@ const Profile = () => {
     const { states, setters, requests } = useContext(IfutureContext)
     const history = useHistory()
     useEffect(() => {
-        requests.getProfile()        
+        requests.getProfile()
+        setters.setPage("profile")
+
     }, [])
 
     return(
