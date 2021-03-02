@@ -2,14 +2,18 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Home from '../pages/Home';
 import Login from "../pages/Login"
+import RestaurantDetail from '../pages/RestaurantDetail';
 import Profile from '../pages/Profile/Profile';
 import Signup from '../pages/Signup';
+
 import headers from '../parameters'
 import EditProfile from '../pages/Profile/EditProfile'
 import EditAddress from '../pages/Profile/Address/EditAddress'
 
-const Router = () => {
+import Feed from '../pages/Feed';
 
+
+const Router = () => {
     
     return (
         <BrowserRouter>
@@ -34,6 +38,14 @@ const Router = () => {
                 </Route>
                 <Route exact path="/home">
                     <Home />
+                </Route>
+
+                <Route exact path="/feed">
+                    <Feed />
+                </Route>
+      
+                <Route exact path="/restaurant-detail/:id">
+                    <RestaurantDetail />
                 </Route>
             </Switch>
         </BrowserRouter>
