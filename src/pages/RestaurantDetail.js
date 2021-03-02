@@ -15,22 +15,10 @@ const RestaurantDetail = () => {
     
 
     useEffect(() => {
+
         requests.getRestaurantDetail(pathParams.id)
     }, [])
 
-
-    // const getRestaurantDetail = async () => {
-
-    //     try {
-    //         // const response = await axios.get(`${baseURL}/restaurants/${pathParams}`, { headers })
-    //         const response = await axios.get(`${baseURL}/restaurants/${pathParams.id}`, { headers })
-    //         setResDetail(response.data.restaurant)
-    //         console.log(response.data.restaurant)
-
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
     const addProduto = (product,id) =>{
         const produtos = { 
             id: id,
@@ -40,6 +28,7 @@ const RestaurantDetail = () => {
                 image: product.photoUrl,
                 description: product.description
             }
+
 
         }
         const novaLista = [...states.cart]
@@ -53,7 +42,7 @@ const RestaurantDetail = () => {
             <div key={product.id}>
                 <p>{product.name}</p>
                 <p>{product.description}</p>
-                <p>{product.price}</p>
+                <p>R$ {(product.price?? 0).toFixed(2)}</p>
                 <img src={product.photoUrl} style={{width:"100px"}}></img>
                 <button onClick={() =>addProduto(product, pathParams.id)}>adicionar</button>
             </div>

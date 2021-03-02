@@ -1,10 +1,18 @@
 import axios from "axios"
-import React from "react"
+import React, { useEffect, useContext} from "react"
 import Input from "../components/Input"
 import useForm from "../hooks/useForm"
 import { baseURL, headers } from "../parameters"
+import IfutureContext from "../Context/IfutureContext"
 
 const AddAdress = () =>{
+
+    const { states, setters, requests } = useContext(IfutureContext)
+
+    useEffect(() => {
+        setters.setPage("address")
+    }, [])
+
     const [form, onChange] = useForm({ street: "" ,number:"",neighbourhood:"",city:"",state:"",complement:""})
 
     const putAdress =async (event)=>{

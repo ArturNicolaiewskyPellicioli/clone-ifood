@@ -4,13 +4,14 @@ import IfutureContext from "./IfutureContext";
 import { baseURL, headers } from "../parameters";
 
 const IfutureProvider = (props) => {
-  const [teste, setTeste] = useState("teste");
+
   const [profile, setProfile] = useState([]);
   const [address, setAddress] = useState([]);
   const [orderHistory, setOrderHistory] = useState([]);
   const [activeOrder, setActiveOrder] = useState({});
   const [cart, setCart] = useState([]);
   const [resDetail, setResDetail] = useState([])
+    const [page, setPage] = useState();
 
   const getProfile = async (event) => {
     try {
@@ -65,6 +66,14 @@ const IfutureProvider = (props) => {
     } catch (error) {
         console.log(error)
     }
+    const states = { teste, profile, address, orderHistory, page }
+    const setters = { setTeste, setProfile, setAddress, setOrderHistory, setPage }
+    const requests = {getProfile, getFullAddress, getOrdersHistory}
+    const data = { states, setters, requests }
+
+    return (
+        <IfutureContext.Provider value={data}>{props.children}</IfutureContext.Provider>
+    )
 }
 
   const states = { teste, profile, address, orderHistory, activeOrder, cart, resDetail };

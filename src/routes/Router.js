@@ -7,10 +7,20 @@ import Profile from '../pages/Profile/Profile';
 import Signup from '../pages/Signup';
 import { Cart } from '../pages/Cart';
 
+import headers from '../parameters'
+import EditProfile from '../pages/Profile/EditProfile'
+import EditAddress from '../pages/Profile/Address/EditAddress'
+
+import Feed from '../pages/Feed';
+import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
+
+
 const Router = () => {
     
     return (
         <BrowserRouter>
+            <Header/>
             <Switch>
                 <Route exact path="/">
                     <Login />
@@ -24,8 +34,17 @@ const Router = () => {
                 <Route exact path="/home/profile">
                     <Profile />
                 </Route>
+                <Route exact path='/home/profile/edit'>
+                    <EditProfile/>
+                </Route>
+                <Route exact path='/home/profile/edit/address'>
+                    <EditAddress/>
+                </Route>
                 <Route exact path="/home">
                     <Home />
+                </Route>
+                <Route exact path="/feed">
+                    <Feed />
                 </Route>
                 <Route exact path="/restaurant-detail/:id">
                     <RestaurantDetail />
@@ -34,6 +53,7 @@ const Router = () => {
                     <Cart />
                 </Route>
             </Switch>
+            <Footer/>
         </BrowserRouter>
     )
 }

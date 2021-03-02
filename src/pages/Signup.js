@@ -1,15 +1,24 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Input from '../components/Input';
 import useForm from '../hooks/useForm';
 import { baseURL } from '../parameters';
 import { goTo } from '../routes/Coordinator';
+import IfutureContext from '../Context/IfutureContext';
+
+
 const Signup = ()=>{
+    const history = useHistory()
+    
+    const { states, setters, requests } = useContext(IfutureContext)
+
     const [form, onChange] = useForm({ name: "" ,password:"",cpf:"",email:""})
     const [form2, onChange2] = useForm({confirmPassword:""})
     
-    const history = useHistory()
+    useEffect(() => {
+        setters.setPage("signup")
+    }, [])
 
 
     const createUser = async (event)=>{
