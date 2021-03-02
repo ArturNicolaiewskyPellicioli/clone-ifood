@@ -1,5 +1,5 @@
 import React from "react";
-function Input({ label, type, name, value, onChange, error, onBlur, placeholder }) {
+function Input({ label, type, name, value, onChange, error, onBlur,onFocus, placeholder }) {
   return (
     <div >
       <label htmlFor={name}>
@@ -13,6 +13,7 @@ function Input({ label, type, name, value, onChange, error, onBlur, placeholder 
         onChange={onChange}
         value={value}
         onBlur={onBlur}
+        onFocus={onFocus}
         placeholder={placeholder}
       />
       {/* {error && <p className={styles.error}> {error}</p>} */}
