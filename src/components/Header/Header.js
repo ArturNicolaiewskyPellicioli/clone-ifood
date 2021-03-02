@@ -11,6 +11,10 @@ export const Header = () => {
 
     const { states, setters, requests } = useContext(IfutureContext)
 
+    const feedPage = () => {
+        setters.setSearchPage(false)
+    }
+
     if(states.page === "login"){
         
         return (
@@ -41,14 +45,27 @@ export const Header = () => {
         )
     } else if(states.page === "feed") {
         return (
-        <NavBar>
-            <Back 
-                src={back} 
-                onClick={() => goToBack(history)}
-            />
-            <Box>
-                <Title>4Food</Title>
-            </Box>
+        <NavBar>        
+
+            {states.searchPage ?
+            <>
+                <Back 
+                    src={back} 
+                    onClick={feedPage}
+                />
+
+                <Box>
+                    <Title>Buscar</Title>
+                </Box>
+                </>
+            :
+            <>
+                <Box>
+                    <Title>4food</Title>
+                </Box>
+            </>
+            }
+           
         </NavBar>
         )
     } else if(states.page === "home") {

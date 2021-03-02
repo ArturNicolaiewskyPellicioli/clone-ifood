@@ -5,6 +5,7 @@ import { baseURL, headers } from "../parameters";
 
 const IfutureProvider = (props) => {
 
+
   const [profile, setProfile] = useState([]);
   const [address, setAddress] = useState([]);
   const [orderHistory, setOrderHistory] = useState([]);
@@ -12,6 +13,7 @@ const IfutureProvider = (props) => {
   const [cart, setCart] = useState([]);
   const [resDetail, setResDetail] = useState([])
   const [page, setPage] = useState();
+  const [searchPage, setSearchPage] = useState(false)
 
   const getProfile = async (event) => {
     try {
@@ -19,6 +21,7 @@ const IfutureProvider = (props) => {
       setProfile(response.data.user);
     } catch (error) {
       console.log(error);
+
     }
   };
 
@@ -75,7 +78,8 @@ const IfutureProvider = (props) => {
     activeOrder, 
     cart, 
     resDetail,
-    page, };
+    page,
+    searchPage};
 
   const setters = {
     setProfile,
@@ -84,7 +88,8 @@ const IfutureProvider = (props) => {
     setActiveOrder,
     setCart,
     setResDetail,
-    setPage
+    setPage,
+    setSearchPage
     
   };
   const requests = {
@@ -103,3 +108,4 @@ const IfutureProvider = (props) => {
   );
 };
 export default IfutureProvider;
+
