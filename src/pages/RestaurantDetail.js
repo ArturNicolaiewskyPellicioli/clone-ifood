@@ -12,6 +12,7 @@ const RestaurantDetail = () => {
 
     useEffect(() => {
         getRestaurantDetail()
+        setters.setPage("details")
     }, [])
 
 

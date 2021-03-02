@@ -10,8 +10,8 @@ const Profile = () => {
 
     useEffect(() => {
         requests.getProfile()
-        
-        
+        setters.setPage("profile")
+
     }, [])
 
     return(

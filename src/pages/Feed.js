@@ -1,12 +1,19 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { baseURL, headers } from '../parameters';
 import Input from '../components/Input'
 import {goTo} from '../routes/Coordinator'
 import useForm from '../hooks/useForm';
 import { useHistory } from 'react-router-dom';
+import IfutureContext from "../Context/IfutureContext";
 
 const Feed = () => {
+    const { states, setters, requests } = useContext(IfutureContext)
+
+    useEffect(() => {
+        setters.setPage("feed")
+    }, [])
+
     const [form, onChange, clear] = useForm({ name: "" })
     const [restaurantsList, setRestaurantsList] = useState()
     const [filteredRestaurantsList, setFilteredRestaurantsList] = useState()

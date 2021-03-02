@@ -10,6 +10,7 @@ const IfutureProvider = (props) => {
     const [profile, setProfile] = useState([])
     const [address, setAddress] = useState([])
     const [orderHistory, setOrderHistory] = useState([])
+    const [page, setPage] = useState();
 
     const getProfile = async (event) => {       
         
@@ -42,8 +43,8 @@ const IfutureProvider = (props) => {
             console.log(error)
         }
     }
-    const states = { teste, profile, address, orderHistory }
-    const setters = { setTeste, setProfile, setAddress, setOrderHistory }
+    const states = { teste, profile, address, orderHistory, page }
+    const setters = { setTeste, setProfile, setAddress, setOrderHistory, setPage }
     const requests = {getProfile, getFullAddress, getOrdersHistory}
     const data = { states, setters, requests }
 

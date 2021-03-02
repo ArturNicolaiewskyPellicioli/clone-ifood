@@ -6,11 +6,13 @@ import RestaurantDetail from '../pages/RestaurantDetail';
 import Profile from '../pages/Profile/Profile';
 import Signup from '../pages/Signup';
 import Feed from '../pages/Feed';
+import Header from '../components/Header/Header'
 
 const Router = () => {
     
     return (
         <BrowserRouter>
+            <Header/>
             <Switch>
                 <Route exact path="/">
                     <Login />
