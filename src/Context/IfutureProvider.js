@@ -11,7 +11,7 @@ const IfutureProvider = (props) => {
   const [activeOrder, setActiveOrder] = useState({});
   const [cart, setCart] = useState([]);
   const [resDetail, setResDetail] = useState([])
-    const [page, setPage] = useState();
+  const [page, setPage] = useState();
 
   const getProfile = async (event) => {
     try {
@@ -66,25 +66,25 @@ const IfutureProvider = (props) => {
     } catch (error) {
         console.log(error)
     }
-    const states = { teste, profile, address, orderHistory, page }
-    const setters = { setTeste, setProfile, setAddress, setOrderHistory, setPage }
-    const requests = {getProfile, getFullAddress, getOrdersHistory}
-    const data = { states, setters, requests }
+  }
+  
+  const states = {  
+    profile, 
+    address, 
+    orderHistory, 
+    activeOrder, 
+    cart, 
+    resDetail,
+    page, };
 
-    return (
-        <IfutureContext.Provider value={data}>{props.children}</IfutureContext.Provider>
-    )
-}
-
-  const states = { teste, profile, address, orderHistory, activeOrder, cart, resDetail };
   const setters = {
-    setTeste,
     setProfile,
     setAddress,
     setOrderHistory,
     setActiveOrder,
     setCart,
-    setResDetail
+    setResDetail,
+    setPage
     
   };
   const requests = {
