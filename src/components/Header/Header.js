@@ -25,13 +25,13 @@ export const Header = () => {
     } else if(states.page === "signup") {
         return (
         <NavBar>
-                <Back 
-                    src={back} 
-                    onClick={() => goToBack(history)}
-                />
-            {/* <Box>
+            <Back 
+                src={back} 
+                onClick={() => goToBack(history)}
+            />
+            <Box>
                 <Title>SignUp</Title>
-            </Box> */}
+            </Box>
         </NavBar>
         )
     } else if(states.page === "address") {
@@ -45,8 +45,7 @@ export const Header = () => {
         )
     } else if(states.page === "feed") {
         return (
-        <NavBar>
-        
+        <NavBar>        
 
             {states.searchPage ?
             <>
@@ -66,7 +65,7 @@ export const Header = () => {
                 </Box>
             </>
             }
-            
+           
         </NavBar>
         )
     } else if(states.page === "home") {
@@ -94,6 +93,9 @@ export const Header = () => {
                 src={back} 
                 onClick={() => goToBack(history)}
             />
+            <Box>
+                <Title>Restaurante</Title>
+            </Box>
         </NavBar>
         )
     } else {

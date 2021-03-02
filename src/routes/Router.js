@@ -5,6 +5,7 @@ import Login from "../pages/Login"
 import RestaurantDetail from '../pages/RestaurantDetail';
 import Profile from '../pages/Profile/Profile';
 import Signup from '../pages/Signup';
+import { Cart } from '../pages/Cart';
 
 import headers from '../parameters'
 import EditProfile from '../pages/Profile/EditProfile'
@@ -12,6 +13,7 @@ import EditAddress from '../pages/Profile/Address/EditAddress'
 
 import Feed from '../pages/Feed';
 import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
 
 
 const Router = () => {
@@ -41,15 +43,17 @@ const Router = () => {
                 <Route exact path="/home">
                     <Home />
                 </Route>
-
                 <Route exact path="/feed">
                     <Feed />
                 </Route>
-      
                 <Route exact path="/restaurant-detail/:id">
                     <RestaurantDetail />
                 </Route>
+                <Route exact path="/cart">
+                    <Cart />
+                </Route>
             </Switch>
+            <Footer/>
         </BrowserRouter>
     )
 }

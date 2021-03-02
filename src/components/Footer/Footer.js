@@ -1,9 +1,12 @@
 import React, { useContext} from "react";
-import {} from './styled'
+import { NavBarFooter, IconFooter } from './styled'
 import homepage from '../../Icons/SVG/homepage.svg'
+import redHomepage from '../../Icons/SVG/homepage-red.svg'
 import cart from '../../Icons/SVG/shopping-cart.svg'
+import redCart from '../../Icons/SVG/shopping-cart-red.svg'
 import avatar from '../../Icons/SVG/avatar.svg'
-import { goToBack } from "../../routes/Coordinator";
+import redAvatar from '../../Icons/SVG/avatar-red.svg'
+import { goTo } from "../../routes/Coordinator";
 import { useHistory } from 'react-router-dom';
 import IfutureContext from '../../Context/IfutureContext';
 
@@ -13,66 +16,56 @@ export const Footer = () => {
 
     const { states, setters, requests } = useContext(IfutureContext)
 
-    if(states.page === "login"){
-        
+    if(states.page === "feed") {
         return (
-        <>
-
-        </>
+        <NavBarFooter>
+            <IconFooter 
+                src={redHomepage} 
+                onClick={() => goTo(history, "/home", "")}
+            />
+            <IconFooter
+                src={cart} 
+                onClick={() => goTo(history, "/cart", "")}
+            />
+            <IconFooter
+                src={avatar} 
+                onClick={() => goTo(history, "/home/profile", "")}
+            />
+        </NavBarFooter>
         )
-    } else if(states.page === "signup") {
+    } else if(states.page === "/profile") {
         return (
-        <NavBar>
-            <Back 
-                src={back} 
-                onClick={() => goToBack(history)}
+            <NavBarFooter>
+            <IconFooter 
+                src={homepage} 
+                onClick={() => goTo(history, "/home", "")}
             />
-        </NavBar>
+            <IconFooter
+                src={cart} 
+                onClick={() => goTo(history, "/cart", "")}
+            />
+            <IconFooter
+                src={redAvatar} 
+                onClick={() => goTo(history, "/profile", "")}
+            />
+        </NavBarFooter>
         )
-    } else if(states.page === "address") {
+    } else if(states.page === "cart") {
         return (
-        <NavBar>
-            <Back 
-                src={back} 
-                onClick={() => goToBack(history)}
+        <NavBarFooter>
+            <IconFooter 
+                src={homepage} 
+                onClick={() => goTo(history, "/home", "")}
             />
-        </NavBar>
-        )
-    } else if(states.page === "feed") {
-        return (
-        <NavBar>
-            <Back 
-                src={back} 
-                onClick={() => goToBack(history)}
+            <IconFooter
+                src={redCart} 
+                onClick={() => goTo(history, "/cart", "")}
             />
-        </NavBar>
-        )
-    } else if(states.page === "home") {
-        return (
-        <NavBar>
-            <Back 
-                src={back} 
-                onClick={() => goToBack(history)}
+            <IconFooter
+                src={avatar} 
+                onClick={() => goTo(history, "/profile", "")}
             />
-        </NavBar>
-        )
-    } else if(states.page === "profile") {
-        return (
-        <NavBar>
-            <Back 
-                src={back} 
-                onClick={() => goToBack(history)}
-            />
-        </NavBar>
-        )
-    } else if (states.page === "details") {
-        return(
-        <NavBar>
-            <Back 
-                src={back} 
-                onClick={() => goToBack(history)}
-            />
-        </NavBar>
+        </NavBarFooter>
         )
     } else {
         return (
