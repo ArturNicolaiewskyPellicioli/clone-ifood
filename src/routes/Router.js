@@ -5,6 +5,7 @@ import Login from "../pages/Login"
 import RestaurantDetail from '../pages/RestaurantDetail';
 import Profile from '../pages/Profile/Profile';
 import Signup from '../pages/Signup';
+import { Cart } from '../pages/Cart';
 
 const Router = () => {
     
@@ -26,8 +27,11 @@ const Router = () => {
                 <Route exact path="/home">
                     <Home />
                 </Route>
-                <Route exact path="/restaurant-detail">
+                <Route exact path="/restaurant-detail/:id">
                     <RestaurantDetail />
+                </Route>
+                <Route exact path="/cart">
+                    <Cart />
                 </Route>
             </Switch>
         </BrowserRouter>

@@ -15,7 +15,7 @@ const AddAdress = () =>{
             console.log(response)
             localStorage.setItem("token",response.data.token)
         } catch (error) {
-            console.log(error)
+            console.log(error.response)
         }
     }
 
