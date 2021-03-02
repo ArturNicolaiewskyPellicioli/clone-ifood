@@ -18,8 +18,8 @@ const RestaurantDetail = () => {
     const getRestaurantDetail = async () => {
 
         try {
-            // const response = await axios.get(`${baseURL}/restaurants/${pathParams}`, { headers })
-            const response = await axios.get(`${baseURL}/restaurants/1`, { headers })
+            const response = await axios.get(`${baseURL}/restaurants/${pathParams.id}`, { headers })
+            // const response = await axios.get(`${baseURL}/restaurants/1`, { headers })
             setResDetail(response.data.restaurant)
             console.log(response.data.restaurant)
 
@@ -33,7 +33,7 @@ const RestaurantDetail = () => {
             <div key={product.id}>
                 <p>{product.name}</p>
                 <p>{product.description}</p>
-                <p>{product.price}</p>
+                <p>R$ {(product.price?? 0).toFixed(2)}</p>
                 <img src={product.photoUrl} style={{width:"100px"}}></img>
                 <button>adicionar</button>
             </div>
@@ -45,6 +45,7 @@ const RestaurantDetail = () => {
                 <p>{resDetail.name}</p>
                 <p>{resDetail.category}</p>
                 <p>{resDetail.deliveryTime}</p>
+                <p>{resDetail.deliveryTime} - {Number(resDetail.deliveryTime) + 10}min</p>
                 <p>{resDetail.address}</p>
                 <img src={resDetail.logoURL}></img>
             </div>
