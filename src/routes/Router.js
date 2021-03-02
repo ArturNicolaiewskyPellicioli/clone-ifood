@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Home from '../pages/Home';
-import Login from "../pages/Login"
+import Login from "../pages/Login";
 import Signup from '../pages/Signup';
+import Feed from '../pages/Feed';
 
 const Router = () => {
 
@@ -21,6 +22,9 @@ const Router = () => {
                 </Route>
                 <Route exact path="/home">
                     <Home />
+                </Route>
+                <Route exact path="/feed">
+                    <Feed />
                 </Route>
             </Switch>
         </BrowserRouter>
