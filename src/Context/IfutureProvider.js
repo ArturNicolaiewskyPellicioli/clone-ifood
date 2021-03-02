@@ -42,6 +42,7 @@ const IfutureProvider = (props) => {
             console.log(error)
         }
     }
+
     const states = { teste, profile, address, orderHistory }
     const setters = { setTeste, setProfile, setAddress, setOrderHistory }
     const requests = {getProfile, getFullAddress, getOrdersHistory}

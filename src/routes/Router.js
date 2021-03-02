@@ -5,7 +5,13 @@ import Login from "../pages/Login"
 import RestaurantDetail from '../pages/RestaurantDetail';
 import Profile from '../pages/Profile/Profile';
 import Signup from '../pages/Signup';
+
+import headers from '../parameters'
+import EditProfile from '../pages/Profile/EditProfile'
+import EditAddress from '../pages/Profile/Address/EditAddress'
+
 import Feed from '../pages/Feed';
+
 
 const Router = () => {
     
@@ -23,6 +29,12 @@ const Router = () => {
                 </Route>
                 <Route exact path="/home/profile">
                     <Profile />
+                </Route>
+                <Route exact path='/home/profile/edit'>
+                    <EditProfile/>
+                </Route>
+                <Route exact path='/home/profile/edit/address'>
+                    <EditAddress/>
                 </Route>
                 <Route exact path="/home">
                     <Home />

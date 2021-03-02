@@ -5,6 +5,7 @@ import Input from '../components/Input';
 import useForm from '../hooks/useForm';
 import { baseURL } from '../parameters';
 import { goTo } from '../routes/Coordinator';
+
 const Signup = ()=>{
     const [form, onChange] = useForm({ name: "" ,password:"",cpf:"",email:""})
     const [form2, onChange2] = useForm({confirmPassword:""})
