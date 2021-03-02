@@ -32,7 +32,7 @@ const Router = () => {
                     <Feed />
                 </Route>
       
-                <Route exact path="/restaurant-detail">
+                <Route exact path="/restaurant-detail/:id">
                     <RestaurantDetail />
                 </Route>
             </Switch>
