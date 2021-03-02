@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
 export const NavBar = styled.div `
-  width: 22.5rem;
+  display: flex;
+  align-items: center;
+  max-width: 100vw;
   height: 4rem;
   margin: 0 0 0.5rem;
   -webkit-backdrop-filter: blur(10px);
@@ -11,20 +13,19 @@ export const NavBar = styled.div `
 `
 export const Box = styled.div `
     display:flex;
-    width: 10.938rem;
-    height: 2.75rem;
-    margin: 1.25rem 5.75rem 0 5.813rem;
-    padding: 0.813rem 4.063rem 0.75rem;
+    flex: 1;
+    justify-content: center;
+    margin-right: 20%;
 `
 
 export const Back = styled.img `
+  display: flex;
   width: 1.44rem;
   height: 1.5rem;
   margin: 0.625rem 3.373rem 0.625rem 1rem;
   object-fit: contain;
-}
 `
-export const Title = styled.div `
+export const Title = styled.div ` 
   width: 2.813rem;
   height: 1.188rem;
   font-family: Roboto;
