@@ -5,6 +5,7 @@ import Login from "../pages/Login"
 import RestaurantDetail from '../pages/RestaurantDetail';
 import Profile from '../pages/Profile/Profile';
 import Signup from '../pages/Signup';
+import Feed from '../pages/Feed';
 
 const Router = () => {
     
@@ -26,6 +27,11 @@ const Router = () => {
                 <Route exact path="/home">
                     <Home />
                 </Route>
+
+                <Route exact path="/feed">
+                    <Feed />
+                </Route>
+      
                 <Route exact path="/restaurant-detail">
                     <RestaurantDetail />
                 </Route>
