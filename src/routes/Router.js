@@ -12,6 +12,7 @@ import EditAddress from '../pages/Profile/Address/EditAddress'
 
 import Feed from '../pages/Feed';
 import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
 
 
 const Router = () => {
@@ -50,6 +51,7 @@ const Router = () => {
                     <RestaurantDetail />
                 </Route>
             </Switch>
+            <Footer/>
         </BrowserRouter>
     )
 }
