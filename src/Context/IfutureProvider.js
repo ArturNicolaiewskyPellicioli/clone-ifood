@@ -5,16 +5,11 @@ import { baseURL, headers } from '../parameters'
 
 
 const IfutureProvider = (props) => {
+
     const [teste, setTeste] = useState("teste")
     const [profile, setProfile] = useState([])
     const [address, setAddress] = useState([])
     const [orderHistory, setOrderHistory] = useState([])
-
-
-
-    const states = { teste, profile, address, orderHistory }
-    const setters = { setTeste, setProfile, setAddress, setOrderHistory }
-    
 
     const getProfile = async (event) => {       
         
@@ -28,20 +23,16 @@ const IfutureProvider = (props) => {
     }
 
     const getFullAddress = async (event) => {
-
         try{
             const response = await axios.get(`${baseURL}/profile/address`, {headers})
             // console.log(response)
             setAddress(response.data.address)
         } catch (error) {
             console.log(error)
-
         }
-
     }
     
     const getOrdersHistory = async (event) => {
-
         try{
             const response = await axios.get(`${baseURL}/orders/history`, {headers})
             // console.log(response)
@@ -50,16 +41,9 @@ const IfutureProvider = (props) => {
         } catch (error) {
             console.log(error)
         }
-
     }
-
-
-
-
-
-
-
-
+    const states = { teste, profile, address, orderHistory }
+    const setters = { setTeste, setProfile, setAddress, setOrderHistory }
     const requests = {getProfile, getFullAddress, getOrdersHistory}
     const data = { states, setters, requests }
 
