@@ -75,7 +75,7 @@ const Feed = () => {
     }, [currentCategory])
 
     const goToDetails = (id) => {
-        goTo(history, "/restaurant-detail", `${id}`)
+        goTo(history, "/restaurant-detail", `/${id}`)
     }
     
     return (
@@ -94,7 +94,7 @@ const Feed = () => {
                     
                     filteredRestaurantsList && filteredRestaurantsList.map(restaurant => {
                     return(
-                        <div onClick={() => goToDetails(restaurant.id)}>
+                        <div onClick={() => goToDetails(restaurant.id)} >
                             <p>{restaurant.name}</p> 
                             <p>{restaurant.deliveryTime} - {Number(restaurant.deliveryTime) + 10}min</p>
                             <p>Frete: R${(restaurant.shipping ?? 0).toFixed(2)}</p>  
