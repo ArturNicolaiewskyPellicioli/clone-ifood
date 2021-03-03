@@ -1,10 +1,9 @@
 import React from "react";
+import './Input.css';
+
 function Input({ label, type, name, value, onChange, error, onBlur,onFocus, placeholder }) {
   return (
-    <div >
-      <label htmlFor={name}>
-        {label}
-      </label>
+    <div className="label-float">
       <input
         type={type}
         id={name}
@@ -16,6 +15,9 @@ function Input({ label, type, name, value, onChange, error, onBlur,onFocus, plac
         onFocus={onFocus}
         placeholder={placeholder}
       />
+      <label htmlFor={name}>
+        {label}
+      </label>
       {/* {error && <p className={styles.error}> {error}</p>} */}
     </div>
   );

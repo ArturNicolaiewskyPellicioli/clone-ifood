@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import Input from '../components/Input';
-import useForm from '../hooks/useForm';
-import { baseURL } from '../parameters';
-import { goTo } from '../routes/Coordinator';
-import IfutureContext from '../Context/IfutureContext';
+import Input from '../../components/Input';
+import useForm from '../../hooks/useForm';
+import { baseURL } from '../../parameters';
+import { goTo } from '../../routes/Coordinator';
+import IfutureContext from '../../Context/IfutureContext';
 
 
 const Signup = ()=>{
