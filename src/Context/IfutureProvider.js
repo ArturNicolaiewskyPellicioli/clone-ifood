@@ -71,6 +71,10 @@ const IfutureProvider = (props) => {
     }
   }
 
+  const feedPage = () => {
+    setSearchPage(false)
+}
+
       const addProduto = (product) =>{
         const produtos = { 
                 id: product.id,
@@ -113,7 +117,8 @@ const IfutureProvider = (props) => {
     getOrdersHistory,
     getActiveOrder,
     getRestaurantDetail,
-    addProduto
+    addProduto,
+    feedPage
   };
   const data = { states, setters, requests };
 
