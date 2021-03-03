@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState, useContext } from 'react';
-import { baseURL, headers } from '../parameters';
-import Input from '../components/Input'
-import {goTo} from '../routes/Coordinator'
-import useForm from '../hooks/useForm';
+import { baseURL, headers } from '../../parameters';
+import Input from '../../components/Input'
+import {goTo} from '../../routes/Coordinator'
+import useForm from '../../hooks/useForm';
 import { useHistory } from 'react-router-dom';
-import IfutureContext from "../Context/IfutureContext";
+import IfutureContext from "../../Context/IfutureContext";
+import {} from "./styled"
 
 const Feed = () => {
     const { states, setters, requests } = useContext(IfutureContext)

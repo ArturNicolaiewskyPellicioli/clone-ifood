@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import Input from '../components/Input';
-import IfutureContext from '../Context/IfutureContext';
-import useForm from '../hooks/useForm';
-import { baseURL } from '../parameters';
-import { goTo } from '../routes/Coordinator';
-import Logo from '../components/Logo'
+import Input from '../../components/Input';
+import IfutureContext from '../../Context/IfutureContext';
+import useForm from '../../hooks/useForm';
+import { baseURL } from '../../parameters';
+import { goTo } from '../../routes/Coordinator';
+import Logo from '../../components/Logo'
+import {Container, BoxTitle, Title, Button} from './styled'
 
 const Login = (props) => {
     const { states, setters, requests } = useContext(IfutureContext)
@@ -28,18 +29,21 @@ const Login = (props) => {
             clear()
         } catch (error) {
             console.log(error)
+            alert('Primeira vez aqui? Faça seu cadastro!')
         }
     }
     return (
-    <>
-        <Logo/>    
+    <Container>
+        <Logo/>
+        <BoxTitle>
+            <Title>Entrar</Title>
+            </BoxTitle>    
         <form onSubmit={login}>
-            <p>login{states.teste}</p>
-            <Input label="email" type="email" name="email" {...form.email} onChange={onChange}/>
-            <Input label="password" type="password" name="password" {...form.password} onChange={onChange}/>
-            <button>Login</button>
+            <Input label="E-mail" type="email" name="email" {...form.email} onChange={onChange}/>
+            <Input label="Password" type="password" name="password" {...form.password} onChange={onChange}/>
+            <Button>Login</Button>
         </form>
-    </>
+    </Container>
     )
 }
 export default Login
