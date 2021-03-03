@@ -4,7 +4,7 @@ export const NavBarFooter = styled.div `
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  max-width: 100vw;
+  max-width: 100%;
   height: 4rem;
   margin: 0 0 0.5rem;
   -webkit-backdrop-filter: blur(10px);
