@@ -1,19 +1,20 @@
 import React from "react";
 import './Input.css';
 
-function Input({ label, type, name, value, onChange, error, onBlur,onFocus, placeholder }) {
+function Input({ label, type, name, value, onChange, error, onBlur,onFocus, placeholder, className }) {
   return (
     <div className="label-float">
       <input
         type={type}
         id={name}
         name={name}
-        // className={styles.input}
+        className={className}
         onChange={onChange}
         value={value}
         onBlur={onBlur}
         onFocus={onFocus}
         placeholder={placeholder}
+        required
       />
       <label htmlFor={name}>
         {label}

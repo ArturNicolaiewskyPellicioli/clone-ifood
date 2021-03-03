@@ -14,6 +14,7 @@ export const Cart = () => {
     getCart(cart);
     getRestaurantDetail(resDetail);
     getPrice(resDetail,cart)
+    setters.setPage('cart')
   }, [cart, resDetail]);
 
   // console.log(address)

@@ -18,7 +18,6 @@ const MenuBar = styled.div`
         display: none;
     }
 `
-
 const Input = styled.input`
     padding: 1rem 3.2rem;
     width: 15rem;
@@ -30,14 +29,12 @@ const Input = styled.input`
     background-position-y: center;
     background-position-x: 15px;
 `
-
 const ContainerPage = styled.div`
     width: 100vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 `
-
 const Feed = () => {
     const { states, setters, requests } = useContext(IfutureContext)
 
@@ -51,7 +48,6 @@ const Feed = () => {
     const [filteredRestaurantsListInput, setFilteredRestaurantsListInput] = useState()
     const [currentCategory, setCurrentCategory] = useState()
     const [listCategory, setListCategoryState] = useState()
-
 
     const history = useHistory()
     

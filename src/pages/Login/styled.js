@@ -6,9 +6,8 @@ export const Container = styled.div `
     justify-content: center;
     align-items:center;
     max-width: 100vw;
-    height: auto;
-    margin-top: 15%;
-    gap: 10px;    
+    height: 100%;
+    gap: 5px;    
 `
 
 export const BoxTitle = styled.div `
@@ -29,7 +28,7 @@ export const Title = styled.div `
     text-align: center;
     color: var(--black);
 `
-export const Button = styled.div `
+export const Button = styled.button `
     display: flex;
     justify-content: center;
     text-align: center;
@@ -49,5 +48,24 @@ export const Button = styled.div `
     letter-spacing: -0.39px;
     text-align: center;
     color: var(--black);
+`
+
+export const Subscribe = styled.button `
+    width: 18.5rem;
+    height: 1.125rem;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    text-align: center;
+    color: var(--black);
+    margin-top: 5%;
+
+    :hover {
+        text-decoration: underline;
+    }
 `
 
