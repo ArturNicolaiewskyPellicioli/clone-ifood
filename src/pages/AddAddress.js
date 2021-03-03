@@ -15,7 +15,7 @@ const AddAdress = () =>{
 
     const [form, onChange] = useForm({ street: "" ,number:"",neighbourhood:"",city:"",state:"",complement:""})
 
-    const putAdress =async (event)=>{
+    const putAdress = async (event)=>{
         event.preventDefault()
         console.log(form)
         try {
