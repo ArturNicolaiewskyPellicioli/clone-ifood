@@ -4,16 +4,15 @@ import IfutureContext from "./IfutureContext";
 import { baseURL, headers } from "../parameters";
 
 const IfutureProvider = (props) => {
-
-
   const [profile, setProfile] = useState([]);
   const [address, setAddress] = useState([]);
   const [orderHistory, setOrderHistory] = useState([]);
   const [activeOrder, setActiveOrder] = useState({});
   const [cart, setCart] = useState([]);
-  const [resDetail, setResDetail] = useState([])
+  const [resDetail, setResDetail] = useState([]);
   const [page, setPage] = useState();
-  const [searchPage, setSearchPage] = useState(false)
+  const [id, setId] = useState("");
+  const [searchPage, setSearchPage] = useState(false);
 
   const getProfile = async (event) => {
     try {
@@ -21,7 +20,6 @@ const IfutureProvider = (props) => {
       setProfile(response.data.user);
     } catch (error) {
       console.log(error);
-
     }
   };
 
@@ -59,64 +57,64 @@ const IfutureProvider = (props) => {
   };
 
   const getRestaurantDetail = async (id) => {
-
     try {
-        // const response = await axios.get(`${baseURL}/restaurants/${pathParams}`, { headers })
-        const response = await axios.get(`${baseURL}/restaurants/${id}`, { headers })
-        setResDetail(response.data.restaurant)
-        console.log(response.data.restaurant)
-
+      // const response = await axios.get(`${baseURL}/restaurants/${pathParams}`, { headers })
+      const response = await axios.get(`${baseURL}/restaurants/${id}`, {
+        headers,
+      });
+      setResDetail(response.data.restaurant);
+      console.log(response.data.restaurant);
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const feedPage = () => {
-    setSearchPage(false)
-}
+    setSearchPage(false);
+  };
 
-const addProduto = (product, quantity) => {
-  console.log("p",product)
-  console.log("q",quantity)
-  const produtos = {
-    product: {
+  const addProduto = (product, quantity, id) => {
+    console.log("p", product);
+    console.log("q", quantity);
+    const produtos = {
       product: product.name,
       price: product.price,
       image: product.photoUrl,
       description: product.description,
-      quantity:quantity,
-    }
-  }
-  const novaLista = [...states.cart]
-  novaLista.push(produtos)
-  console.log("c",novaLista)
-  setCart(novaLista)
-}
+      quantity: quantity,
+    };
+    const novaLista = [...states.cart];
+    novaLista.push(produtos);
+    console.log("c", novaLista);
+    setId(id);
+    setCart(novaLista);
+  };
 
-    //   const addProduto = (product) =>{
-    //     const produtos = { 
-    //             id: product.id,
-    //             product: product.name,
-    //             price: product.price,
-    //             image: product.photoUrl,
-    //             description: product.description
-          
+  //   const addProduto = (product) =>{
+  //     const produtos = {
+  //             id: product.id,
+  //             product: product.name,
+  //             price: product.price,
+  //             image: product.photoUrl,
+  //             description: product.description
 
-    //     }
-    //     const novaLista = [...cart]
-    //     novaLista.push(produtos)
-    //     setCart(novaLista)
-    // }
-  
-  const states = {  
-    profile, 
-    address, 
-    orderHistory, 
-    activeOrder, 
-    cart, 
+  //     }
+  //     const novaLista = [...cart]
+  //     novaLista.push(produtos)
+  //     setCart(novaLista)
+  // }
+
+  const states = {
+    profile,
+    address,
+    orderHistory,
+    activeOrder,
+    cart,
     resDetail,
     page,
-    searchPage};
+    searchPage,
+    id,
+  };
 
   const setters = {
     setProfile,
@@ -126,8 +124,7 @@ const addProduto = (product, quantity) => {
     setCart,
     setResDetail,
     setPage,
-    setSearchPage
-    
+    setSearchPage,
   };
   const requests = {
     getProfile,
@@ -136,7 +133,7 @@ const addProduto = (product, quantity) => {
     getActiveOrder,
     getRestaurantDetail,
     addProduto,
-    feedPage
+    feedPage,
   };
   const data = { states, setters, requests };
 
@@ -147,4 +144,3 @@ const addProduto = (product, quantity) => {
   );
 };
 export default IfutureProvider;
-
