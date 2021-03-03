@@ -75,20 +75,38 @@ const IfutureProvider = (props) => {
     setSearchPage(false)
 }
 
-      const addProduto = (product) =>{
-        const produtos = { 
-                id: product.id,
-                product: product.name,
-                price: product.price,
-                image: product.photoUrl,
-                description: product.description
+const addProduto = (product, quantity) => {
+  console.log("p",product)
+  console.log("q",quantity)
+  const produtos = {
+    product: {
+      product: product.name,
+      price: product.price,
+      image: product.photoUrl,
+      description: product.description,
+      quantity:quantity,
+    }
+  }
+  const novaLista = [...states.cart]
+  novaLista.push(produtos)
+  console.log("c",novaLista)
+  setCart(novaLista)
+}
+
+    //   const addProduto = (product) =>{
+    //     const produtos = { 
+    //             id: product.id,
+    //             product: product.name,
+    //             price: product.price,
+    //             image: product.photoUrl,
+    //             description: product.description
           
 
-        }
-        const novaLista = [...cart]
-        novaLista.push(produtos)
-        setCart(novaLista)
-    }
+    //     }
+    //     const novaLista = [...cart]
+    //     novaLista.push(produtos)
+    //     setCart(novaLista)
+    // }
   
   const states = {  
     profile, 

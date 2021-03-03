@@ -16,7 +16,7 @@ const Signup = ()=>{
     // useUnProtectedPage()
     const history = useHistory()
     
-    const { states, setters, requests } = useContext(IfutureContext)
+    const {  setters } = useContext(IfutureContext)
 
     const [form, onChange] = useForm({ name: "" ,password:"",cpf:"",email:""})
     const [form2, onChange2] = useForm({confirmPassword:""})

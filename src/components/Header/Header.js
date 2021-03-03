@@ -9,7 +9,7 @@ export const Header = () => {
 
     const history=useHistory()
 
-    const { states, setters, requests } = useContext(IfutureContext)
+    const { states, requests } = useContext(IfutureContext)
 
     if(states.page === "login"){
         

@@ -94,6 +94,7 @@ const RestaurantDetail = () => {
     const pathParams = useParams()
     const [dropdown, setDropdown] = useState("");
     const modalRef = useRef(null);
+    const [selectedProduct,setSelectedProduct]=useState("")
 
     const history = useHistory()
 
@@ -102,23 +103,11 @@ const RestaurantDetail = () => {
         setters.setPage('restaurant-detail')
     }, [])
 
-    const addProduto = (product, id) => {
-        const produtos = {
-            id: id,
-            product: {
-                product: product.name,
-                price: product.price,
-                image: product.photoUrl,
-                description: product.description,
-            }
 
+    const toggleDropdown = (p) => {
+        const findProduct = states.resDetail.products.findIndex(product=>product===p)
+        setSelectedProduct(findProduct)
 
-        }
-        const novaLista = [...states.cart]
-        novaLista.push(produtos)
-        setters.setCart(novaLista)
-    }
-    const toggleDropdown = () => {
         console.log("show");
         //se clicar no botão, modal aparece
         setDropdown("show");
@@ -126,7 +115,7 @@ const RestaurantDetail = () => {
     }
 
     const closeDropdown = event => {
-        event.stopPropagation(); //impede de executar listeners dos filhos
+        // event.stopPropagation(); //impede de executar listeners dos filhos
         const contain = modalRef.current.contains(event.target);
         if (!contain) { //se clicar fora do modal, ele DESaparece
             console.log("hidden");
@@ -136,6 +125,7 @@ const RestaurantDetail = () => {
     };
 
     const showDetail = states.resDetail.products && states.resDetail.products.map((product) => {
+        
         return (
             <CardProduct key={product.id}>
                 <ContainerImg><ImgProduct src={product.photoUrl} /></ContainerImg>
@@ -145,10 +135,10 @@ const RestaurantDetail = () => {
                     <p>R$ {(product.price ?? 0).toFixed(2)}</p>
 
                 </ContainerInfoProduct>
-                <ButtonAddCart onClick={toggleDropdown}>adicionar</ButtonAddCart>
+                <ButtonAddCart onClick={()=>toggleDropdown(product)} value={product}>adicionar</ButtonAddCart>
                 {/* <ButtonAddCart onClick={() => addProduto(product, pathParams.id)}>adicionar</ButtonAddCart> */}
                 <ButtonQuantity >4</ButtonQuantity>
-                <Modal className={dropdown} modalRef={modalRef} addProduto={addProduto} pathParams={pathParams.id}/>
+                <Modal className={dropdown} modalRef={modalRef} product={states.resDetail.products[selectedProduct]}/>
                 
             </CardProduct>
         )

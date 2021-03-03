@@ -13,9 +13,8 @@ import useUnProtectedPage from '../../hooks/useUnProtectedPage'
 
 const Login = (props) => {
 
-    // useUnProtectedPage()
+    const {  setters } = useContext(IfutureContext)
 
-    const { states, setters, requests } = useContext(IfutureContext)
     const [form, onChange, clear] = useForm({email:"",password:""})
 
     const history=useHistory()

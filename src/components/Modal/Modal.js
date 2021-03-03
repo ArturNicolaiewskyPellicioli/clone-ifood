@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import IfutureContext from "../../Context/IfutureContext";
 import "./Modal.css";
 
 const Modal = props => {
     const { className, modalRef } = props;
+    const { states, setters, requests } = useContext(IfutureContext)
+    const [quantity, setQuantity] = useState("");
 
-    return(
+
+    const onChangeQuantity = (event) => {
+
+        setQuantity(event.target.value)
+    }
+
+    return (
         <div ref={modalRef} className={`${className} modal`}>
             <p>Selecione a quantidade desejada</p>
-            <select name="quantity">
+
+            <select name="quantity" onChange={onChangeQuantity}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -18,7 +28,8 @@ const Modal = props => {
                 <option value="8">8</option>
                 <option value="9">9</option>
             </select>
-            <button></button>
+            <button onClick={() => requests.addProduto(props.product, quantity)} >Adicionar ao Carrinho</button>
+
         </div>
     )
 }
