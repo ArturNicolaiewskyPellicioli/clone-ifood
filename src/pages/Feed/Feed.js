@@ -55,7 +55,6 @@ const Feed = () => {
         try {
             const response = await axios.get(`${baseURL}/restaurants`, {headers})
             setRestaurantsList(response.data.restaurants)
-            console.log(response.data.restaurants)
             
         } catch (err) {
             console.log(err)
@@ -63,15 +62,15 @@ const Feed = () => {
     }
 
     const onClickNavBar = (event) => {
-        // event.target.classList.add('active')
-        console.log(event.target)
-    }
-
-    const onClickCategory = (event) => {
         setCurrentCategory(event.target.value)
+        const divv = event.target.closest('div').children
+
+        for(let button of divv){
+            button.classList.remove('active')
+            console.log(button)
+        }
+
         event.target.classList.add('active')
-        console.log(event.target)
-        clear()
 
         if(currentCategory === event.target.value) {
             setCurrentCategory(null)
@@ -96,7 +95,6 @@ const Feed = () => {
             if(currentCategory !== null) {
 
         const listCategory = restaurantsList.filter(rest => rest.category.toLowerCase().includes(currentCategory.toLowerCase()))
-        console.log(listCategory)
         setListCategoryState(listCategory)
         setFilteredRestaurantsList(listCategory)
             } else {
@@ -108,6 +106,10 @@ const Feed = () => {
     useEffect(() => {
         getUsers()
     },[])
+
+    useEffect(() => {
+        clear()
+    },[states.searchPage])
 
     useEffect(() => {
         filterListInput()
@@ -156,7 +158,7 @@ const Feed = () => {
                     <MenuBar onClick={onClickNavBar}>
                         {restaurantsList && restaurantsList.map(restaurant => {
                             return(
-                                <button onClick={onClickCategory} className={styles.active} value={restaurant.category}>{restaurant.category}</button> 
+                                <button value={restaurant.category}>{restaurant.category}</button> 
                             
                             )
                         })}
