@@ -7,7 +7,7 @@ import IfutureContext from '../../../Context/IfutureContext'
 
 
 const OrderHistory = () => {
-    const { states, setters, requests } = useContext(IfutureContext)
+    const { states,  requests } = useContext(IfutureContext)
 
     useEffect(() => {
         requests.getOrdersHistory()

@@ -6,7 +6,7 @@ import { goTo } from "../../../routes/Coordinator"
 
 
 const Address = () => {
-    const { states, setters, requests } = useContext(IfutureContext)
+    const { states, requests } = useContext(IfutureContext)
     const history = useHistory()
     
 

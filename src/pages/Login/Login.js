@@ -10,7 +10,7 @@ import Logo from '../../components/Logo'
 import {Container, BoxTitle, Title, Button} from './styled'
 
 const Login = (props) => {
-    const { states, setters, requests } = useContext(IfutureContext)
+    const {  setters } = useContext(IfutureContext)
     const [form, onChange, clear] = useForm({email:"",password:""})
 
     const history=useHistory()

@@ -7,7 +7,7 @@ import IfutureContext from "../Context/IfutureContext"
 
 const AddAdress = () =>{
 
-    const { states, setters, requests } = useContext(IfutureContext)
+    const {  setters } = useContext(IfutureContext)
 
     useEffect(() => {
         setters.setPage("address")
