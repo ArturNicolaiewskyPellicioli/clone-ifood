@@ -15,8 +15,8 @@ const RestaurantDetail = () => {
     
 
     useEffect(() => {
-
         requests.getRestaurantDetail(pathParams.id)
+        setters.setPage('restaurant-detail')
     }, [])
 
     // const addProduto = (product) =>{

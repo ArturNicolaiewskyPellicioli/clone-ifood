@@ -18,9 +18,9 @@ export const Header = () => {
     if(states.page === "login"){
         
         return (
-        <>
+        <NavBar style={{boxShadow:'none'}}>
 
-        </>
+        </NavBar>
         )
     } else if(states.page === "signup") {
         return (
@@ -86,7 +86,7 @@ export const Header = () => {
             />
         </NavBar>
         )
-    } else if (states.page === "details") {
+    } else if (states.page === "restaurant-detail") {
         return(
         <NavBar>
             <Back 

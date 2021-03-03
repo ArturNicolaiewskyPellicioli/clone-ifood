@@ -4,8 +4,8 @@ export const NavBar = styled.div `
   display: flex;
   align-items: center;
   max-width: 100vw;
-  height: 4rem;
-  margin: 0 0 0.5rem;
+  height: 3rem;
+  margin: 0;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);

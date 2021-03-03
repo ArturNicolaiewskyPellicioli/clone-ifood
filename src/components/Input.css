@@ -1,3 +1,4 @@
+
 .label-float{
     position: relative;
     padding-top: 13px;
@@ -8,13 +9,13 @@
     width: 20.5rem;
     height: 3.125rem;
     font-family: Roboto;
+    font-size: 1rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.39px;
-    color: #d0d0d0;
-    
+    color: var(--black);
     border: 1px solid #b8b8b8;
     border-radius: 2px;
     outline: none;
@@ -37,7 +38,7 @@
   
   .label-float label{
     width: 4.875rem;
-    height: 2rem;
+    height: 0.9rem;
     font-family: Roboto;
     font-size: 0.75rem;
     font-weight: normal;
@@ -59,10 +60,10 @@
   }
   
   .label-float input:required:invalid + label{
-    color: red;
+    color: #b8b8b8;
   }
   .label-float input:focus:required:invalid{
-    border: 2px solid red;
+    border: 2px solid rgba(232, 34, 46, 0.5);
   }
   .label-float input:required:invalid + label:before{
     content: '*';
@@ -72,4 +73,11 @@
     font-size: 0.75 rem;
     top: 0;
     color: #b8b8b8;
+  }
+
+  .senha {
+    background-image: url("../Icons/SVG/senha.svg");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 95%;
   }
