@@ -138,7 +138,7 @@ const RestaurantDetail = () => {
                 <ButtonAddCart onClick={()=>toggleDropdown(product)} value={product}>adicionar</ButtonAddCart>
                 {/* <ButtonAddCart onClick={() => addProduto(product, pathParams.id)}>adicionar</ButtonAddCart> */}
                 <ButtonQuantity >4</ButtonQuantity>
-                <Modal className={dropdown} modalRef={modalRef} product={states.resDetail.products[selectedProduct]}/>
+                <Modal className={dropdown} modalRef={modalRef} product={states.resDetail.products[selectedProduct] } id={pathParams.id}/>
                 
             </CardProduct>
         )
