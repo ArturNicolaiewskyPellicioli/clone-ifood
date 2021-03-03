@@ -11,6 +11,7 @@
 .image{
     width: 6rem;
     height: 7rem;
+    border-radius: 8px 0px;
 }
 .wrapper{
     width: 100%;
