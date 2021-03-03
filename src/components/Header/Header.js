@@ -11,10 +11,6 @@ export const Header = () => {
 
     const { states, setters, requests } = useContext(IfutureContext)
 
-    const feedPage = () => {
-        setters.setSearchPage(false)
-    }
-
     if(states.page === "login"){
         
         return (
@@ -51,7 +47,7 @@ export const Header = () => {
             <>
                 <Back 
                     src={back} 
-                    onClick={feedPage}
+                    onClick={requests.feedPage}
                 />
 
                 <Box>
