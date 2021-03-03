@@ -19,22 +19,20 @@ const RestaurantDetail = () => {
         requests.getRestaurantDetail(pathParams.id)
     }, [])
 
-    const addProduto = (product,id) =>{
-        const produtos = { 
-            id: id,
-            product: {
-                product: product.name,
-                price: product.price,
-                image: product.photoUrl,
-                description: product.description
-            }
+    // const addProduto = (product) =>{
+    //     const produtos = { 
+    //             id: product.id,
+    //             product: product.name,
+    //             price: product.price,
+    //             image: product.photoUrl,
+    //             description: product.description
+          
 
-
-        }
-        const novaLista = [...states.cart]
-        novaLista.push(produtos)
-        setters.setCart(novaLista)
-    }
+    //     }
+    //     const novaLista = [...states.cart]
+    //     novaLista.push(produtos)
+    //     setters.setCart(novaLista)
+    // }
     
 
     const showDetail = states.resDetail.products && states.resDetail.products.map((product) => {
@@ -44,7 +42,7 @@ const RestaurantDetail = () => {
                 <p>{product.description}</p>
                 <p>R$ {(product.price?? 0).toFixed(2)}</p>
                 <img src={product.photoUrl} style={{width:"100px"}}></img>
-                <button onClick={() =>addProduto(product, pathParams.id)}>adicionar</button>
+                <button onClick={() =>requests.addProduto(product)}>adicionar</button>
             </div>
         )
     })
