@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState, useContext } from 'react';
-import { baseURL, headers } from '../parameters';
-import {goTo} from '../routes/Coordinator'
-import useForm from '../hooks/useForm';
+import { baseURL, headers } from '../../parameters';
+import {goTo} from '../../routes/Coordinator'
+import useForm from '../../hooks/useForm';
 import { useHistory } from 'react-router-dom';
-import IfutureContext from "../Context/IfutureContext";
+import IfutureContext from "../../Context/IfutureContext";
 import styled from 'styled-components';
-import styles from '../App.css'
-import '../button.css'
+import styles from '../../App.css'
+import '../../button.css'
 
 const MenuBar = styled.div`
     overflow-x: scroll;
@@ -15,11 +15,9 @@ const MenuBar = styled.div`
     white-space: nowrap;
     
     &::-webkit-scrollbar {
-     display: none;
-  }
+        display: none;
+    }
 `
-
-
 
 const Input = styled.input`
     padding: 1rem 3.2rem;

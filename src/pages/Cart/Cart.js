@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import IfutureContext from "../Context/IfutureContext";
-import styles from "./Cart.module.css";
+import IfutureContext from "../../Context/IfutureContext";
+import styles from './Cart.module.css'
 export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
   const { getFullAddress, getActiveOrder, getRestaurantDetail } = requests;
