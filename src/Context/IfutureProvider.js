@@ -70,6 +70,21 @@ const IfutureProvider = (props) => {
         console.log(error)
     }
   }
+
+      const addProduto = (product) =>{
+        const produtos = { 
+                id: product.id,
+                product: product.name,
+                price: product.price,
+                image: product.photoUrl,
+                description: product.description
+          
+
+        }
+        const novaLista = [...cart]
+        novaLista.push(produtos)
+        setCart(novaLista)
+    }
   
   const states = {  
     profile, 
@@ -97,7 +112,8 @@ const IfutureProvider = (props) => {
     getFullAddress,
     getOrdersHistory,
     getActiveOrder,
-    getRestaurantDetail
+    getRestaurantDetail,
+    addProduto
   };
   const data = { states, setters, requests };
 

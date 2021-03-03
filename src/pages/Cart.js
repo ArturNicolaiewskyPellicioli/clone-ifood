@@ -1,16 +1,20 @@
 import React, { useContext, useEffect } from "react";
 import IfutureContext from "../Context/IfutureContext";
-import styles from './Cart.module.css'
+import styles from "./Cart.module.css";
 export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
   const { getFullAddress, getActiveOrder, getRestaurantDetail } = requests;
   const { address, activeOrder, cart, resDetail } = states;
- 
+  //Nome
+  // Endereço
+  //Delivery time
 
   useEffect(() => {
     getFullAddress();
     getCart(cart);
-  }, []);
+    getRestaurantDetail(resDetail);
+    getPrice(resDetail,cart)
+  }, [cart, resDetail]);
 
   // console.log(address)
 
@@ -24,36 +28,36 @@ export const Cart = () => {
       </div>
     );
   };
-  console.log(resDetail)
+  
 
-  const getCart = (cart) => {
-      console.log(cart)
-    return cart.map((product) =>{
-        return(
-            <div className={styles.teste} key={product.product.product}>
-                <img className={styles.image} src={product.product.image} alt={product.product.product}/>
-                <div className={styles.wrapper}>
-                <p className={styles.name}>{product.product.product}</p>
-                <p className={styles.description}> {product.product.description}</p>
-                <p className={styles.price}>R$: {product.product.price}</p>
-
-                </div>
-            </div>
-        )
-    })
-    
-
+  const restaurantInfo = (resDetail) => {
+    return (
+      <div>
+        <p>{resDetail.name}</p>
+        <p>{resDetail.address}</p>
+        <p>{resDetail.deliveryTime} min</p>
+      </div>
+    );
   };
 
-  //Nome do resturante
-  //Endereço do Restaurante
-  //Delivery
-
-  //produto
-  //foto
-  //Nome
-  //Descrição
-  //Preço
+  const getCart = (cart) => {
+    return cart.map((product) => {
+      return (
+        <div className={styles.teste} key={product.id}>
+          <img
+            className={styles.image}
+            src={product.image}
+            alt={product.product}
+          />
+          <div className={styles.wrapper}>
+            <p className={styles.name}>{product.product}</p>
+            <p className={styles.description}> {product.description}</p>
+            <p className={styles.price}>R$: {product.price}</p>
+          </div>
+        </div>
+      );
+    });
+  };
 
   const noCart = () => {
     return (
@@ -66,14 +70,27 @@ export const Cart = () => {
     );
   };
 
-  //Endereço de Entrega
-  //Rua, número
+  const getPrice = (resDetail, cart) =>{
+    console.log(cart)
+    const shipping = resDetail.shipping
+    // const productsPrice = cart.reduce((acc, price) => acc )
+
+    const subtotal = shipping 
+    return(
+      <div>
+        <p> Frete: {shipping}</p>
+        <p>SubTotal: {subtotal}</p>
+      </div>
+    )
+  }
 
   return (
     <div>
       <h1>Meu Carinho</h1>
       {address && getAddress(address)}
+      {resDetail && restaurantInfo(resDetail)}
       {cart.length === 0 ? noCart() : getCart(cart)}
+      {cart && resDetail && getPrice(resDetail, cart)}
       <button disabled>Confirmar</button>
       <p></p>
     </div>
