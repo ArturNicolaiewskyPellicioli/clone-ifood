@@ -1,6 +1,8 @@
 import React, {useEffect, useContext} from "react"
 import AddAddress from "./AddAddress"
 import IfutureContext from "../Context/IfutureContext"
+import {Container} from '../pages/RestaurantDetail/styled'
+import {Title} from '../components/Header/styled'
 
 const Home =()=>{
 
@@ -12,9 +14,10 @@ const Home =()=>{
 
 
     return(
-        <div>
+        <Container>
+            <Title>Meu endereço</Title>
             <AddAddress/>
-        </div>
+        </Container>
     )
 }
 export default Home

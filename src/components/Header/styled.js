@@ -4,7 +4,7 @@ export const NavBar = styled.div `
   display: flex;
   align-items: center;
   max-width: 100vw;
-  height: 3rem;
+  height: 10vh;
   margin: 0;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -25,11 +25,9 @@ export const Back = styled.img `
   margin: 0.625rem 3.373rem 0.625rem 1rem;
   object-fit: contain;
 `
-export const Title = styled.div ` 
-  width: 2.813rem;
-  height: 1.188rem;
+export const Title = styled.p ` 
   font-family: Roboto;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -37,4 +35,5 @@ export const Title = styled.div `
   letter-spacing: -0.39px;
   text-align: center;
   color: var(--black);
+  margin: 10px;
 `

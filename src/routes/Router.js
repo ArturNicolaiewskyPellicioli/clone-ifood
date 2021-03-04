@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Home from '../pages/Home';
 import Login from "../pages/Login/Login"
-import RestaurantDetail from '../pages/RestaurantDetail';
+import RestaurantDetail from '../pages/RestaurantDetail/RestaurantDetail';
 import Profile from '../pages/Profile/Profile';
 import Signup from '../pages/Signup/Signup';
 import { Cart } from '../pages/Cart/Cart';
