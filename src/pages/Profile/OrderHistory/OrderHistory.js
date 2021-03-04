@@ -1,6 +1,6 @@
-import React, { useEffect, useContext  } from "react"
+import React, { useEffect, useContext } from "react"
 import IfutureContext from '../../../Context/IfutureContext'
-import {BoxCard, SubTotal, OrderDate, RestaurantName} from './OrderHistory_Styled'
+import { BoxCard, SubTotal, OrderDate, RestaurantName } from './OrderHistory_Styled'
 
 //ATENCAO
 //ARRUMAR DEPOIS DE FAZER OS PEDIDOS DE COMIDO DO COISO COISADO!
@@ -9,41 +9,37 @@ import {BoxCard, SubTotal, OrderDate, RestaurantName} from './OrderHistory_Style
 
 const OrderHistory = () => {
     const { states, setters, requests } = useContext(IfutureContext)
-
+   
     useEffect(() => {
 
         requests.getOrdersHistory()
-        
+
     }, [])
+   
+    if (states.orderHistory) {
 
-    if(states.orderHistory){
 
-        return(
-            <div>
-                oi
-            </div>
+       
+        return (
+            states.orderHistory && states.orderHistory.map((order) => {
+                return (
+                    <div>
+                        <BoxCard>
+                            <RestaurantName>{order.restaurantName}</RestaurantName>
+                            <OrderDate>{order.createdAt}</OrderDate>
+                            <SubTotal>{`Subtotal R$${order.totalPrice}`}</SubTotal>
+                        </BoxCard>
+                    </div>
+                )
+
+            })
         )
-        // let orderHistory = states.orderHistory
 
-        // return(
-        //     <BoxCard>
-        //         <RestaurantName>Burguer Vila Madalena</RestaurantName>
-        //         <OrderDate>23 de Outubro 2019</OrderDate>
-        //         <SubTotal>Subtotal R$89,00</SubTotal>
-        //     </BoxCard>
-        // )
-        // orderHistory && orderHistory.map((order) => {
-        //     return(
-        //         <div>
-        //             {order.name}
-        //         </div>
-        //     )
-        // })
-        
+
     }
-    return(
+    return (
         <div>
-            No Order History        
+            No Order History
         </div>
     )
 }

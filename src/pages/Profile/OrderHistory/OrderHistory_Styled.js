@@ -4,6 +4,7 @@ export const BoxCard = styled.div`
   border-radius: 8px;
   border: solid 1px #b8b8b8;
   font-family: Roboto;
+  margin: 2vh 2vw;
 `
 
 export const RestaurantName = styled.div`
