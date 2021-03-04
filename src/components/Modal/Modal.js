@@ -28,7 +28,7 @@ const Modal = props => {
                 <option value="8">8</option>
                 <option value="9">9</option>
             </select>
-            <button onClick={() => requests.addProduto(props.product, quantity)} >Adicionar ao Carrinho</button>
+            <button onClick={() => requests.addProduto(props.product, quantity, props.id)} >Adicionar ao Carrinho</button>
 
         </div>
     )
