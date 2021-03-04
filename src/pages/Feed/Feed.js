@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useLayoutEffect } from 'react';
 import { baseURL, headers } from '../../parameters';
 import {goTo} from '../../routes/Coordinator'
 import useForm from '../../hooks/useForm';
@@ -8,10 +8,13 @@ import IfutureContext from "../../Context/IfutureContext";
 import {ContainerPage, MenuBar, Input, BoxCard, TextBox, CardImage} from './styled';
 import '../../button.css'
 import { ContainerImg, GrayText, ImgProduct, RedText, } from '../RestaurantDetail/styled';
+import useProtectedPage from '../../hooks/useProtectedPage';
 
 
 const Feed = () => {
     const { states, setters, requests } = useContext(IfutureContext)
+
+    useProtectedPage()
 
     useEffect(() => {
         setters.setPage("feed")
@@ -26,15 +29,19 @@ const Feed = () => {
 
     const history = useHistory()
     
-    const getUsers = async () => {
-        try {
-            const response = await axios.get(`${baseURL}/restaurants`, {headers})
-            setRestaurantsList(response.data.restaurants)
-            
-        } catch (err) {
-            console.log(err)
-        }
+    const getRestaurants =  () => {
+        
+        const headers1 = {auth:localStorage.getItem("token")}  
+        console.log("çlksdjfalksdhjf",headers1.auth)
+        axios.get(`${baseURL}/restaurants`, { headers })
+        .then((response)=>setRestaurantsList(response.data.restaurants))
+        .catch(()=>console.log("deu ruim"))
+        // setRestaurantsList(response.data.restaurants)
     }
+
+const getHeader=()=>{
+    return { headers }
+}
 
     const onClickNavBar = (event) => {
         setCurrentCategory(event.target.value)
@@ -78,8 +85,8 @@ const Feed = () => {
             }
     }}
 
-    useEffect(() => {
-        getUsers()
+    useLayoutEffect(() => {
+        getRestaurants()
     },[])
 
     useEffect(() => {

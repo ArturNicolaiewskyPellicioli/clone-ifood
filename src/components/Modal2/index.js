@@ -31,7 +31,7 @@ const ModalBox = (props) => {
   }
 
   const removeCart = () => {
-    const newcart = states.cart.filter((c) => { return c.id !== props.product.id })
+    const newcart = props.carrinho.filter((c) => { return c.id !== props.product.id })
     setters.setCart(newcart)
 
     localStorage.setItem("carrinho", JSON.stringify(newcart))

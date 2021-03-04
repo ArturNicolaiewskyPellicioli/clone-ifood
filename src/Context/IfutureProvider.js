@@ -89,7 +89,7 @@ const IfutureProvider = (props) => {
       quantity: Number(quantity),
       visible:true
     };
-    const novaLista = [...states.cart];
+    const novaLista = [...JSON.parse(localStorage.getItem("carrinho"))];
     novaLista.push(produtos);
     console.log("c", novaLista);
     setId(id);
@@ -125,8 +125,7 @@ const IfutureProvider = (props) => {
     }
   };
 
-    console.log("cart", cart);
-  };
+
 
   const states = {
     profile,

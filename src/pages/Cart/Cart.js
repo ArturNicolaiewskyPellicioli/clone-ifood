@@ -78,7 +78,7 @@ export const Cart = () => {
   };
 
   const removeCart = (product) => {
-    const newcart = states.cart.filter((c) => { return c.id !== product.id })
+    const newcart = carrinho.filter((c) => { return c.id !== product.id })
     setters.setCart(newcart)
 
     localStorage.setItem("carrinho", JSON.stringify(newcart))
@@ -105,16 +105,17 @@ export const Cart = () => {
       <>
         {restaurantInfo()}
         {showOrder}
-        {orderPrice(resDetail.shipping, cart)}
+        {orderPrice(resDetail.shipping, carrinho)}
       </>
     );
   };
 
-  const orderPrice = (shipping, cart) => {
-    const ship = shipping;
+  const orderPrice = () => {
+    console.log(resDetail.shipping)
+    const ship = resDetail.shipping;
     const showPrice =
-      cart &&
-      cart
+      carrinho &&
+      carrinho
         .map((price) => {
           return price.price * Number(price.quantity);
         })
@@ -123,7 +124,7 @@ export const Cart = () => {
     const totalOrder = ship + Number(showPrice);
     return (
       <CartWrapper>
-        <Shipping>Frete: R$ {ship.toFixed(2)}</Shipping>
+        <Shipping>Frete: R$ {ship}</Shipping>
         <Subtotal>SUBTOTAL:</Subtotal>  <Price>R$ {totalOrder.toFixed(2)}</Price>
       </CartWrapper>
     );
@@ -178,7 +179,7 @@ export const Cart = () => {
 
       {paymentMethod()}
 
-      <ButtonConfirm onClick={() => createOrder(payment)}>Confirmar</ButtonConfirm>
+      <ButtonConfirm  onClick={() => createOrder(payment)}>Confirmar</ButtonConfirm>
     </CartContainer>
 
 

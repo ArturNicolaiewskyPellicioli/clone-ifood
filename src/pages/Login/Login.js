@@ -35,6 +35,8 @@ const Login = (props) => {
             clear()
             }
             else {
+                localStorage.setItem("carrinho", "[]")
+                
                 goTo(history, "/feed","")
             }
         } catch (error) {
