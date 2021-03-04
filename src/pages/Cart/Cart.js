@@ -7,6 +7,7 @@ import {
   AddressContainer,
   AddressTitle,
   ButtonConfirm,
+  CardProduct,
   CartContainer,
   CartWrapper,
   EmptyCart,
@@ -16,9 +17,13 @@ import {
   Price,
   Shipping,
   Subtotal,
+  GrayText,
+  ButtonAddCart,
+  ButtonQuantity
 } from "./styled";
 import Home from "../Home";
 import { goTo } from "../../routes/Coordinator";
+import { CardRestaurant, ContainerInfoProduct, ImgProduct, RedText } from "../RestaurantDetail/styled";
 
 export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
@@ -67,7 +72,7 @@ export const Cart = () => {
   const getCart = (cart) => {
     const showOrder = cart.map((product) => {
       return (
-        <CardProduct key={product.id}>
+        <CardProduct  duct key={product.id}>
             <ImgProduct src={product.image} />
           <ContainerInfoProduct>
             <RedText>{product.product}</RedText>

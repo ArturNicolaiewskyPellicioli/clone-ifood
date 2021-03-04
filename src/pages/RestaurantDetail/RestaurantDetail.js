@@ -82,7 +82,6 @@ const RestaurantDetail = () => {
              {showRestaurant()}
              <Title><b>Produtos</b></Title>
              {showDetail}
-             <button onClick={goToCart}>Ver Carrinho</button>
         </Container>
         }
         </> 
