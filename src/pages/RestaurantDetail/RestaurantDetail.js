@@ -74,25 +74,15 @@ const RestaurantDetail = () => {
             </CardRestaurant>
         )
     }
-
-    const goToCart = () => {
-        try {
-            goTo(history, "/cart", "")
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
     return ( 
         <>
         {states.isLoading ? <Loader/> : 
         
         <Container>
-                    {showRestaurant()}
-                    <Title><b>Produtos</b></Title>
-                    {showDetail}
-                    <button onClick={goToCart}>Ver Carrinho</button>
+             {showRestaurant()}
+             <Title><b>Produtos</b></Title>
+             {showDetail}
+             <button onClick={goToCart}>Ver Carrinho</button>
         </Container>
         }
         </> 
