@@ -16,6 +16,7 @@ const IfutureProvider = (props) => {
   const [isLoading, setLoading] = useState(false);
   const [order, setOrder] = useState(false);
 
+
   const getProfile = async (event) => {
     try {
       const response = await axios.get(`${baseURL}/profile`, { headers });
@@ -85,13 +86,16 @@ const IfutureProvider = (props) => {
       price: product.price,
       image: product.photoUrl,
       description: product.description,
-      quantity: quantity,
+      quantity: Number(quantity),
+      visible:true
     };
     const novaLista = [...states.cart];
     novaLista.push(produtos);
     console.log("c", novaLista);
     setId(id);
+    localStorage.setItem("carrinho",JSON.stringify(novaLista));
     setCart(novaLista);
+
   };
 
   const createOrder = async (payment) => {
@@ -121,19 +125,8 @@ const IfutureProvider = (props) => {
     }
   };
 
-  //   const addProduto = (product) =>{
-  //     const produtos = {
-  //             id: product.id,
-  //             product: product.name,
-  //             price: product.price,
-  //             image: product.photoUrl,
-  //             description: product.description
-
-  //     }
-  //     const novaLista = [...cart]
-  //     novaLista.push(produtos)
-  //     setCart(novaLista)
-  // }
+    console.log("cart", cart);
+  };
 
   const states = {
     profile,
@@ -146,6 +139,7 @@ const IfutureProvider = (props) => {
     searchPage,
     id,
     isLoading,
+
   };
 
   const setters = {

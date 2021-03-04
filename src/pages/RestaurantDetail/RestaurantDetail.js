@@ -4,17 +4,26 @@ import styled from "styled-components"
 import Modal from "../../components/Modal/Modal"
 import IfutureContext from "../../Context/IfutureContext"
 import { goTo } from "../../routes/Coordinator"
-import {Container, CardRestaurant, ImgRestaurant, RedText, GrayText, Title, SpanPadding, CardProduct, ContainerInfoProduct, ImgProduct, ButtonAddCart, ButtonQuantity, TextItem } from "./styled"
+import { Container, CardRestaurant, ImgRestaurant, RedText, GrayText, Title, SpanPadding, CardProduct, ContainerInfoProduct, ImgProduct, ButtonAddCart, ButtonQuantity, TextItem } from "./styled"
 import Loader from '../../components/Loader'
+import useModal from "../../components/Modal2/index2"
+import ModalBox from "../../components/Modal2"
+
+const modalStyle = {
+    backgroundColor: '#fff',
+    padding: '60px 100px',
+    borderRadius: '10px'
+};
 
 const RestaurantDetail = () => {
     const { states, setters, requests } = useContext(IfutureContext)
     const { address, cart, id, resDetail } = states;
     const pathParams = useParams()
     const [dropdown, setDropdown] = useState("");
+    const [carrinho, setCarrinho] = useState("");
+    
     const modalRef = useRef(null);
-    const [selectedProduct,setSelectedProduct]=useState("")
-
+    const [selectedProduct, setSelectedProduct] = useState("")
 
     const history = useHistory()
 
@@ -23,16 +32,20 @@ const RestaurantDetail = () => {
         setters.setPage('/restaurant-detail')
     }, [])
 
+    useEffect(() => {
+        setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
+    }, [states.cart])
+
 
 
     const toggleDropdown = (p) => {
-        const findProduct = states.resDetail.products.findIndex(product=>product===p)
+        const findProduct = states.resDetail.products.findIndex(product => product === p)
         setSelectedProduct(findProduct)
 
-        console.log("show");
-        //se clicar no botão, modal aparece
-        setDropdown("show");
-        document.body.addEventListener("click", closeDropdown);
+        // console.log("show");
+        // //se clicar no botão, modal aparece
+        // setDropdown("show");
+        // document.body.addEventListener("click", closeDropdown);
     }
 
     const closeDropdown = event => {
@@ -40,13 +53,13 @@ const RestaurantDetail = () => {
         if (!contain) { //se clicar fora do modal, ele Desaparece
             console.log("hidden");
             setDropdown("");
+            
             document.body.removeEventListener("click", closeDropdown);
         }
     };
 
-
     const showDetail = states.resDetail.products && states.resDetail.products.map((product) => {
-        
+        // console.log(carrinho)
         return (
             <CardProduct key={product.id}>
                 <ImgProduct src={product.photoUrl} />
@@ -55,10 +68,16 @@ const RestaurantDetail = () => {
                     <GrayText>{product.description}</GrayText>
                     <SpanPadding>R${(product.price ?? 0).toFixed(2)}</SpanPadding>
                 </ContainerInfoProduct>
-                <ButtonAddCart onClick={()=>toggleDropdown(product)} value={product}>adicionar</ButtonAddCart>
-                {/* <ButtonAddCart onClick={() => addProduto(product, pathParams.id)}>adicionar</ButtonAddCart> */}
-                <ButtonQuantity >4</ButtonQuantity>
-                <Modal className={dropdown} modalRef={modalRef} product={states.resDetail.products[selectedProduct] } id={pathParams.id}/>
+
+                {carrinho&&carrinho.map(c =>
+                    c.id === product.id?
+                <ButtonQuantity>{c.quantity}</ButtonQuantity>
+                :false)
+               
+                }
+
+            
+                <ModalBox product={product} toggleDropdown={toggleDropdown} carrinho={carrinho}/>
             </CardProduct>
         )
     })
@@ -66,14 +85,15 @@ const RestaurantDetail = () => {
         return (
             <CardRestaurant>
                 <ImgRestaurant src={states.resDetail.logoUrl} />
-                    <RedText>{states.resDetail.name}</RedText>
-                    <GrayText>{states.resDetail.category}</GrayText>
-                    <GrayText>{states.resDetail.deliveryTime} - {Number(states.resDetail.deliveryTime) + 10}min</GrayText>
-                    <GrayText>Frete R$ {(states.resDetail.shipping ?? 0).toFixed(2)}</GrayText>
-                    <GrayText>{states.resDetail.address}</GrayText>
+                <RedText>{states.resDetail.name}</RedText>
+                <GrayText>{states.resDetail.category}</GrayText>
+                <GrayText>{states.resDetail.deliveryTime} - {Number(states.resDetail.deliveryTime) + 10}min</GrayText>
+                <GrayText>Frete R$ {(states.resDetail.shipping ?? 0).toFixed(2)}</GrayText>
+                <GrayText>{states.resDetail.address}</GrayText>
             </CardRestaurant>
         )
     }
+
     return ( 
         <>
         {states.isLoading ? <Loader/> : 

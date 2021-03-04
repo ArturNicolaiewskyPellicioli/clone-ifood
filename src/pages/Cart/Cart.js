@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import IfutureContext from "../../Context/IfutureContext";
 
 import styled from "styled-components";
+
+import { ButtonRemoveToCart } from "../RestaurantDetail/styled";
+
 import {
   Address,
   AddressContainer,
@@ -29,7 +32,11 @@ export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
   const { getFullAddress, getRestaurantDetail, createOrder } = requests;
   const { address, cart, id, resDetail } = states;
+
+  const [carrinho, setCarrinho] = useState("");
+
   const [payment, setPayment] = useState(null);
+
   // const {shipping} = resDetail
   //Nome
   // Endereço
@@ -37,16 +44,17 @@ export const Cart = () => {
 
   useEffect(() => {
     getFullAddress();
-    getRestaurantDetail(id);
 
+    // getRestaurantDetail(id);
+   
     // getCart(cart);
     // getPrice(resDetail,cart)
-    // setters.setPage('cart')
-  }, [id]);
+    setters.setPage('cart')
+  }, []);
 
-
-
-
+  useEffect(() => {
+    setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
+}, [states.cart])
 
   const getAddress = (address) => {
     return (
@@ -59,7 +67,7 @@ export const Cart = () => {
     );
   };
 
-  const restaurantInfo = (resDetail) => {
+  const restaurantInfo = () => {
     return (
       <CardRestaurant>
         <RedText>{resDetail.name}</RedText>
@@ -68,6 +76,13 @@ export const Cart = () => {
       </CardRestaurant>
     );
   };
+
+  const removeCart = (product) => {
+    const newcart = states.cart.filter((c) => { return c.id !== product.id })
+    setters.setCart(newcart)
+
+    localStorage.setItem("carrinho", JSON.stringify(newcart))
+  }
 
   const getCart = (cart) => {
     const showOrder = cart.map((product) => {
@@ -79,7 +94,7 @@ export const Cart = () => {
             <GrayText>{product.description}</GrayText>
             <GrayText>R$ {(product.price ?? 0).toFixed(2)}</GrayText>
           </ContainerInfoProduct>
-          <ButtonAddCart>Remover</ButtonAddCart>
+          <ButtonRemoveToCart onClick={()=>removeCart(product)}>Remover</ButtonRemoveToCart>
           {/* <ButtonAddCart onClick={() => addProduto(product, pathParams.id)}>adicionar</ButtonAddCart> */}
           <ButtonQuantity>{product.quantity}</ButtonQuantity>
         </CardProduct>
@@ -88,7 +103,7 @@ export const Cart = () => {
 
     return (
       <>
-        {restaurantInfo}
+        {restaurantInfo()}
         {showOrder}
         {orderPrice(resDetail.shipping, cart)}
       </>
@@ -157,7 +172,10 @@ export const Cart = () => {
       <p>Meu Carinho</p>
       {address && getAddress(address)}
       {/* {resDetail && restaurantInfo(resDetail)} */}
-      {cart.length === 0 ? noCart(): getCart(cart)}
+
+      {carrinho.length === 0 ? noCart() : getCart(carrinho)}
+      {/* {cart && orderPrice( cart)} */}
+
       {paymentMethod()}
 
       <ButtonConfirm onClick={() => createOrder(payment)}>Confirmar</ButtonConfirm>
