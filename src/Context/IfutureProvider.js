@@ -39,11 +39,10 @@ const IfutureProvider = (props) => {
 
   const getOrdersHistory = async (event) => {
     try {
-      const response = await axios.get(`${baseURL}/orders/history`, {
-        headers,
-      });
-      // console.log(response)
-      setOrderHistory(response.data);
+      const response = await axios.get(`${baseURL}/orders/history`, {headers});
+      console.log("OrdersHistory",response)
+      console.log(typeof(response.data))
+      setOrderHistory(response.data.orders);
     } catch (error) {
       console.log(error);
     }
