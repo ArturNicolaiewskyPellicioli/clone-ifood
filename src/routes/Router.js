@@ -11,6 +11,7 @@ import EditAddress from '../pages/Profile/Address/EditAddress'
 import Feed from '../pages/Feed/Feed';
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
+import AddAdress from '../pages/AddAddress';
 
 
 const Router = () => {
@@ -27,6 +28,9 @@ const Router = () => {
                 </Route>
                 <Route exact path="/signup">
                     <Signup />
+                </Route>
+                <Route exact path="/addres">
+                    <AddAdress />
                 </Route>
                 <Route exact path="/home/profile">
                     <Profile />

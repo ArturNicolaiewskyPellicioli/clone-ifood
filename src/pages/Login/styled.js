@@ -63,6 +63,7 @@ export const Subscribe = styled.button `
     text-align: center;
     color: var(--black);
     margin-top: 5%;
+    cursor: pointer;
 
     :hover {
         text-decoration: underline;

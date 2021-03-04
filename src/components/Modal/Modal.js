@@ -5,7 +5,7 @@ import "./Modal.css";
 const Modal = props => {
     const { className, modalRef } = props;
     const { states, setters, requests } = useContext(IfutureContext)
-    const [quantity, setQuantity] = useState("");
+    const [quantity, setQuantity] = useState(1);
 
 
     const onChangeQuantity = (event) => {
