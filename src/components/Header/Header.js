@@ -56,8 +56,13 @@ export const Header = () => {
                 </>
             :
             <>
-                <Box>
-                    <Title>4food</Title>
+            <Back
+                style={{display:'none'}} 
+                src={back} 
+                onClick={() => goToBack(history)}
+            />
+                <Box style={{margin:'20%'}}>
+                    <Title>4Food</Title>
                 </Box>
             </>
             }
@@ -70,7 +75,7 @@ export const Header = () => {
             <Back 
                 src={back} 
                 onClick={() => goToBack(history)}
-            />
+            />          
         </NavBar>
         )
     } else if(states.page === "profile") {

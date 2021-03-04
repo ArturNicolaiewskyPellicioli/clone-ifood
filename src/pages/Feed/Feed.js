@@ -5,36 +5,11 @@ import {goTo} from '../../routes/Coordinator'
 import useForm from '../../hooks/useForm';
 import { useHistory } from 'react-router-dom';
 import IfutureContext from "../../Context/IfutureContext";
-import styled from 'styled-components';
-import styles from '../../App.css'
+import {ContainerPage, MenuBar, Input, BoxCard, TextBox, CardImage} from './styled';
 import '../../button.css'
+import { ContainerImg, GrayText, ImgProduct, RedText, } from '../RestaurantDetail/styled';
 
-const MenuBar = styled.div`
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    
-    &::-webkit-scrollbar {
-        display: none;
-    }
-`
-const Input = styled.input`
-    padding: 1rem 3.2rem;
-    width: 15rem;
-    margin: 0 auto 1rem auto;
-    border-radius: 2px;
-    border: solid 1px #b8b8b8;
-    background-image: url("/search.svg");
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: 15px;
-`
-const ContainerPage = styled.div`
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-`
+
 const Feed = () => {
     const { states, setters, requests } = useContext(IfutureContext)
 
@@ -129,22 +104,25 @@ const Feed = () => {
         setFilteredRestaurantsList(restaurantsList)
     }
 
+    
     return (
-       <ContainerPage>
+        <ContainerPage>
             <Input type="text" name="name" value={form.name}  onFocus={onSearchPage} onChange={onChange} placeholder="Restaurante"/>
 
             {states.searchPage ?  
                 <>  
-
                     {form.name ?
                         filteredRestaurantsListInput && filteredRestaurantsListInput.length > 0 ? 
                             filteredRestaurantsListInput && filteredRestaurantsListInput.map(restaurant => {
                                 return(
-                                    <div onClick={() => goToDetails(restaurant.id)}>
-                                        <p>{restaurant.name}</p> 
-                                        <p>{restaurant.deliveryTime} - {Number(restaurant.deliveryTime) + 10}min</p>
-                                        <p>Frete: R${(restaurant.shipping ?? 0).toFixed(2)}</p>  
-                                    </div>
+                                    <BoxCard onClick={() => goToDetails(restaurant.id)}>
+                                    <CardImage src={restaurant.logoUrl}/>
+                                    <RedText>{restaurant.name}</RedText> 
+                                    <TextBox>
+                                        <GrayText>{restaurant.deliveryTime} - {Number(restaurant.deliveryTime) + 10}min</GrayText>
+                                        <GrayText>Frete: R${(restaurant.shipping ?? 0).toFixed(2)}</GrayText>  
+                                    </TextBox>
+                                </BoxCard>
                                 )
                             })
                         : 
@@ -168,21 +146,28 @@ const Feed = () => {
                 
                         filteredRestaurantsList && filteredRestaurantsList.map(restaurant => {
                             return(
-                                <div onClick={() => goToDetails(restaurant.id)}>
-                                    <p>{restaurant.name}</p> 
-                                    <p>{restaurant.deliveryTime} - {Number(restaurant.deliveryTime) + 10}min</p>
-                                    <p>Frete: R${(restaurant.shipping ?? 0).toFixed(2)}</p>  
-                                </div>
+                                <BoxCard onClick={() => goToDetails(restaurant.id)}>
+                                    <CardImage src={restaurant.logoUrl}/>
+                                    <RedText>{restaurant.name}</RedText> 
+                                    <TextBox>
+                                        <GrayText>{restaurant.deliveryTime} - {Number(restaurant.deliveryTime) + 10}min</GrayText>
+                                        <GrayText>Frete: R${(restaurant.shipping ?? 0).toFixed(2)}</GrayText>  
+                                    </TextBox>
+                                </BoxCard>
                             )
                         }) 
                     : 
                         restaurantsList && restaurantsList.map(restaurant => {
+                            console.log(restaurant)
                             return(
-                                <div onClick={() => goToDetails(restaurant.id)}>
-                                    <p>{restaurant.name}</p> 
-                                    <p>{restaurant.deliveryTime} - {Number(restaurant.deliveryTime) + 10}min</p>
-                                    <p>Frete: R${(restaurant.shipping ?? 0).toFixed(2)}</p>  
-                                </div>
+                                <BoxCard onClick={() => goToDetails(restaurant.id)}>
+                                    <CardImage src={restaurant.logoUrl}/>
+                                    <RedText>{restaurant.name}</RedText> 
+                                    <TextBox>
+                                        <GrayText>{restaurant.deliveryTime} - {Number(restaurant.deliveryTime) + 10}min</GrayText>
+                                        <GrayText>Frete: R${(restaurant.shipping ?? 0).toFixed(2)}</GrayText>  
+                                    </TextBox>
+                                </BoxCard>
                             )
                         })
                     }

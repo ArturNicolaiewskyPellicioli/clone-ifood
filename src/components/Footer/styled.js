@@ -5,12 +5,12 @@ export const NavBarFooter = styled.div `
   justify-content: space-evenly;
   align-items: center;
   max-width: 100%;
-  height: 4rem;
-  margin: 0 0 0.5rem;
+  height: 10vh;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 0 1px 0.5px rgba(0, 0, 0, 0.25);
   background-color: #ffffff;
+  transition: 0.2s;
 `
 
 export const IconFooter = styled.img `

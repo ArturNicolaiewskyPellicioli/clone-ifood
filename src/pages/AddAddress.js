@@ -4,6 +4,7 @@ import Input from "../components/Input"
 import useForm from "../hooks/useForm"
 import { baseURL, headers } from "../parameters"
 import IfutureContext from "../Context/IfutureContext"
+import {Button} from './Login/styled'
 
 const AddAdress = () =>{
 
@@ -35,7 +36,7 @@ const AddAdress = () =>{
             <Input label="city" type="text" name="city" {...form.city} onChange={onChange}/>
             <Input label="state" type="text" name="state" {...form.state} onChange={onChange}/>
             <Input label="complement" type="text" name="complement" {...form.complement} onChange={onChange}/>
-            <button type="submit">enter</button>
+            <Button type='submit'>Salvar</Button>
         </form>
     )
 }
