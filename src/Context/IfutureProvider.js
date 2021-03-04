@@ -13,7 +13,8 @@ const IfutureProvider = (props) => {
   const [page, setPage] = useState();
   const [id, setId] = useState("");
   const [searchPage, setSearchPage] = useState(false);
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
+  const [order, setOrder] = useState(false);
 
   const getProfile = async (event) => {
     try {
@@ -59,14 +60,14 @@ const IfutureProvider = (props) => {
 
   const getRestaurantDetail = async (id) => {
     try {
-      setLoading(true)
+      setLoading(true);
       // const response = await axios.get(`${baseURL}/restaurants/${pathParams}`, { headers })
       const response = await axios.get(`${baseURL}/restaurants/${id}`, {
         headers,
       });
       setResDetail(response.data.restaurant);
       console.log(response.data.restaurant);
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -80,6 +81,7 @@ const IfutureProvider = (props) => {
     console.log("p", product);
     console.log("q", quantity);
     const produtos = {
+      id: product.id,
       product: product.name,
       price: product.price,
       image: product.photoUrl,
@@ -91,6 +93,33 @@ const IfutureProvider = (props) => {
     console.log("c", novaLista);
     setId(id);
     setCart(novaLista);
+  };
+
+  const createOrder = async (payment) => {
+    const products =
+      cart &&
+      cart.map((order) => {
+        return {
+          id: order.id,
+          quantity: Number(order.quantity),
+        };
+      });
+
+    const body = {
+      products,
+      paymentMethod: payment,
+    };
+    console.log(body);
+
+    try {
+      await axios.post(`${baseURL}/restaurants/${resDetail.id}/order`, body, {
+        headers,
+      });
+
+      setOrder(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //   const addProduto = (product) =>{
@@ -139,6 +168,7 @@ const IfutureProvider = (props) => {
     getRestaurantDetail,
     addProduto,
     feedPage,
+    createOrder,
   };
   const data = { states, setters, requests };
 
