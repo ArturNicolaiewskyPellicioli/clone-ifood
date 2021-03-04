@@ -6,6 +6,9 @@ import {baseURL, headers} from '../../../parameters'
 import { goTo } from "../../../routes/Coordinator"
 import useForm from "../../../hooks/useForm"
 
+import {FieldSet, Button, Input} from './EditAddress_styled.js'
+
+
 
 const EditAddress = () => {
     const { states, setters, requests } = useContext(IfutureContext)
@@ -29,14 +32,31 @@ const EditAddress = () => {
     
     return(
             <form onSubmit={editAddress}>
-            <input placeholder="street" label="street" type="text" name="street" {...form.street} onChange={onChange}/>
-            <input placeholder="Number" label="number" type="number" name="number" {...form.number} onChange={onChange}/>
-            <input placeholder="neighbourhood" label="neighbourhood" type="text" name="neighbourhood" {...form.neighbourhood} onChange={onChange}/>
-            <input placeholder="city" label="city" type="text" name="city" {...form.city} onChange={onChange}/>
-            <input placeholder="state" label="state" type="text" name="state" {...form.state} onChange={onChange}/>
-            <input placeholder="complement" label="complement" type="text" name="complement" {...form.complement} onChange={onChange}/>
-           
-            <button >Save</button>
+             <FieldSet><legend>Street∗</legend>
+            <Input placeholder="Text" type="text" name="street" value={form.street} onChange={onChange}/>
+            </FieldSet>
+
+            <FieldSet><legend>Number∗</legend>
+            <Input placeholder="Text" type="number" name="number" value={form.number} onChange={onChange}/>
+            </FieldSet>
+
+            <FieldSet><legend>Neighbourhood∗</legend>
+            <Input placeholder="Text" type="text" name="neighbourhood" value={form.neighbourhood} onChange={onChange}/>
+            </FieldSet>
+
+            <FieldSet><legend>City∗</legend>
+            <Input placeholder="Text" type="text" name="city" value={form.city} onChange={onChange}/>
+            </FieldSet>
+            
+            <FieldSet><legend>State∗</legend>
+            <Input placeholder="Text" type="text" name="state" value={form.state} onChange={onChange}/>
+            </FieldSet>
+
+            <FieldSet><legend>Complement∗</legend>
+            <Input placeholder="Text" type="text" name="complement" value={form.complement} onChange={onChange}/>
+            </FieldSet>
+
+            <Button colorScheme="red">Save</Button>
             </form>
         
     )

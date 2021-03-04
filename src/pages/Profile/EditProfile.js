@@ -5,6 +5,7 @@ import { goTo } from '../../routes/Coordinator'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import axios from 'axios'
 import {baseURL, headers} from '../../parameters'
+import {Button, Input, FieldSet} from './EditProfile_styled.js'
 
 const EditProfile = () => {
     const { states, setters, requests } = useContext(IfutureContext)
@@ -28,10 +29,19 @@ const EditProfile = () => {
     
     return(
             <form onSubmit={editProfile}>
-            <input placeholder="Name" label="name" type="text" name="name" {...form.name} onChange={onChange}/>
-            <input placeholder="CPF" label="cpf" type="text" name="cpf" {...form.cpf} onChange={onChange}/>
-            <input placeholder="E-mail" label="email" type="email" name="email" {...form.email} onChange={onChange}/>
-            <button >Save</button>
+            <FieldSet><legend>Name∗</legend>
+            <Input placeholder="Text" type="text" name="name" value={form.name} onChange={onChange}/>
+            </FieldSet>
+            
+            <FieldSet><legend>CPF∗</legend>
+            <Input placeholder="Text" type="text" name="cpf" value={form.cpf} onChange={onChange}/>
+            </FieldSet>
+            
+            <FieldSet><legend>E-mail∗</legend>
+            <Input placeholder="Text" type="email" name="email" value={form.email} onChange={onChange}/>
+            </FieldSet>
+
+            <Button >Save</Button>
             </form>
         
     )
