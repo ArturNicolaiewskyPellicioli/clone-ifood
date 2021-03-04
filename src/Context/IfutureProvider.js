@@ -13,7 +13,8 @@ const IfutureProvider = (props) => {
   const [page, setPage] = useState();
   const [id, setId] = useState("");
   const [searchPage, setSearchPage] = useState(false);
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
+  const [order, setOrder] = useState(false);
 
 
   const getProfile = async (event) => {
@@ -39,11 +40,10 @@ const IfutureProvider = (props) => {
 
   const getOrdersHistory = async (event) => {
     try {
-      const response = await axios.get(`${baseURL}/orders/history`, {
-        headers,
-      });
-      // console.log(response)
-      setOrderHistory(response.data);
+      const response = await axios.get(`${baseURL}/orders/history`, {headers});
+      console.log("OrdersHistory",response)
+      console.log(typeof(response.data))
+      setOrderHistory(response.data.orders);
     } catch (error) {
       console.log(error);
     }
@@ -60,14 +60,14 @@ const IfutureProvider = (props) => {
 
   const getRestaurantDetail = async (id) => {
     try {
-      setLoading(true)
+      setLoading(true);
       // const response = await axios.get(`${baseURL}/restaurants/${pathParams}`, { headers })
       const response = await axios.get(`${baseURL}/restaurants/${id}`, {
         headers,
       });
       setResDetail(response.data.restaurant);
       console.log(response.data.restaurant);
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -95,6 +95,35 @@ const IfutureProvider = (props) => {
     setId(id);
     localStorage.setItem("carrinho",JSON.stringify(novaLista));
     setCart(novaLista);
+
+  };
+
+  const createOrder = async (payment) => {
+    const products =
+      cart &&
+      cart.map((order) => {
+        return {
+          id: order.id,
+          quantity: Number(order.quantity),
+        };
+      });
+
+    const body = {
+      products,
+      paymentMethod: payment,
+    };
+    console.log(body);
+
+    try {
+      await axios.post(`${baseURL}/restaurants/${resDetail.id}/order`, body, {
+        headers,
+      });
+
+      setOrder(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
     console.log("cart", cart);
   };
@@ -132,6 +161,7 @@ const IfutureProvider = (props) => {
     getRestaurantDetail,
     addProduto,
     feedPage,
+    createOrder,
   };
   const data = { states, setters, requests };
 

@@ -17,25 +17,25 @@ const modalStyle = {
 
 const RestaurantDetail = () => {
     const { states, setters, requests } = useContext(IfutureContext)
+    const { address, cart, id, resDetail } = states;
     const pathParams = useParams()
     const [dropdown, setDropdown] = useState("");
     const [carrinho, setCarrinho] = useState("");
     
     const modalRef = useRef(null);
     const [selectedProduct, setSelectedProduct] = useState("")
-    // const [Modal, open, close, isOpen] = useModal('root', {
-    //     preventScroll: true
-    // });
+
     const history = useHistory()
 
     useEffect(() => {
         requests.getRestaurantDetail(pathParams.id)
-        setters.setPage('restaurant-detail')
+        setters.setPage('/restaurant-detail')
     }, [])
 
     useEffect(() => {
         setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
     }, [states.cart])
+
 
 
     const toggleDropdown = (p) => {
@@ -57,7 +57,7 @@ const RestaurantDetail = () => {
             document.body.removeEventListener("click", closeDropdown);
         }
     };
-console.log("carrinho",carrinho)
+
     const showDetail = states.resDetail.products && states.resDetail.products.map((product) => {
         // console.log(carrinho)
         return (
@@ -94,28 +94,17 @@ console.log("carrinho",carrinho)
         )
     }
 
-    const goToCart = () => {
-        try {
-            goTo(history, "/cart", "")
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
-    return (
+    return ( 
         <>
-            {states.isLoading ? <Loader /> :
-
-                <Container>
-                    {showRestaurant()}
-                    <Title><b>Produtos</b></Title>
-                    {showDetail}
-                    <button onClick={goToCart}>Ver Carrinho</button>
-
-                </Container>
-            }
-        </>
+        {states.isLoading ? <Loader/> : 
+        
+        <Container>
+             {showRestaurant()}
+             <Title><b>Produtos</b></Title>
+             {showDetail}
+        </Container>
+        }
+        </> 
     )
 }
 export default RestaurantDetail

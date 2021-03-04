@@ -1,12 +1,42 @@
 import React, { useContext, useEffect, useState } from "react";
 import IfutureContext from "../../Context/IfutureContext";
+
 import styled from "styled-components";
+
 import { ButtonRemoveToCart } from "../RestaurantDetail/styled";
+
+import {
+  Address,
+  AddressContainer,
+  AddressTitle,
+  ButtonConfirm,
+  CardProduct,
+  CartContainer,
+  CartWrapper,
+  EmptyCart,
+  PaymentContainer,
+  PaymentLabel,
+  PaymentTitle,
+  Price,
+  Shipping,
+  Subtotal,
+  GrayText,
+  ButtonAddCart,
+  ButtonQuantity
+} from "./styled";
+import Home from "../Home";
+import { goTo } from "../../routes/Coordinator";
+import { CardRestaurant, ContainerInfoProduct, ImgProduct, RedText } from "../RestaurantDetail/styled";
+
 export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
-  const { getFullAddress, getRestaurantDetail } = requests;
+  const { getFullAddress, getRestaurantDetail, createOrder } = requests;
   const { address, cart, id, resDetail } = states;
+
   const [carrinho, setCarrinho] = useState("");
+
+  const [payment, setPayment] = useState(null);
+
   // const {shipping} = resDetail
   //Nome
   // Endereço
@@ -14,6 +44,7 @@ export const Cart = () => {
 
   useEffect(() => {
     getFullAddress();
+
     // getRestaurantDetail(id);
    
     // getCart(cart);
@@ -25,74 +56,24 @@ export const Cart = () => {
     setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
 }, [states.cart])
 
-  const CardProduct = styled.div`
-    margin-top: 10px;
-    width: 100%;
-    display: flex;
-    border-radius: 15px;
-    border: 1px solid;
-    position: relative;
-  `;
-  const ContainerImg = styled.div`
-    width: 20%;
-    min-width: 130px;
-  `;
-
-  const ImgProduct = styled.img`
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    width: 100%;
-  `;
-  const ContainerInfoProduct = styled.div`
-    padding: 10px;
-    width: 80%;
-  `;
-  const PRed = styled.p`
-    margin-top: 10px;
-    color: red;
-  `;
-  const ButtonAddCart = styled.button`
-    height: 40px;
-    padding: 10px;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    border: 1px solid black;
-    background-color: #fff;
-    list-style: none;
-    text-decoration: none;
-  `;
-  const ButtonQuantity = styled.button`
-    height: 40px;
-    padding: 10px;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    right: 0;
-    bottom: 0;
-    color: red;
-    border: 1px solid red;
-    background-color: #fff;
-  `;
   const getAddress = (address) => {
     return (
-      <div>
-        <p>Endereço de Entrega</p>
-        <p>
+      <AddressContainer>
+        <AddressTitle>Endereço de Entrega</AddressTitle>
+        <Address>
           {address.street}, {address.number}
-        </p>
-      </div>
+        </Address>
+      </AddressContainer>
     );
   };
 
   const restaurantInfo = () => {
     return (
-      <div>
-        <p>{resDetail.name}</p>
-        <p>{resDetail.address}</p>
-        <p>{resDetail.deliveryTime} min</p>
-      </div>
+      <CardRestaurant>
+        <RedText>{resDetail.name}</RedText>
+        <GrayText>{resDetail.address}</GrayText>
+        <GrayText>{resDetail.deliveryTime} min</GrayText>
+      </CardRestaurant>
     );
   };
 
@@ -106,16 +87,12 @@ export const Cart = () => {
   const getCart = (cart) => {
     const showOrder = cart.map((product) => {
       return (
-        <CardProduct key={product.id}>
-          <ContainerImg>
+        <CardProduct  duct key={product.id}>
             <ImgProduct src={product.image} />
-          </ContainerImg>
           <ContainerInfoProduct>
-            <h4>
-              <PRed>{product.product}</PRed>
-            </h4>
-            <p>{product.description}</p>
-            <p>R$ {(product.price ?? 0).toFixed(2)}</p>
+            <RedText>{product.product}</RedText>
+            <GrayText>{product.description}</GrayText>
+            <GrayText>R$ {(product.price ?? 0).toFixed(2)}</GrayText>
           </ContainerInfoProduct>
           <ButtonRemoveToCart onClick={()=>removeCart(product)}>Remover</ButtonRemoveToCart>
           {/* <ButtonAddCart onClick={() => addProduto(product, pathParams.id)}>adicionar</ButtonAddCart> */}
@@ -135,45 +112,75 @@ export const Cart = () => {
 
   const orderPrice = (shipping, cart) => {
     const ship = shipping;
-    console.log(ship);
-    const showPrice = cart
-      .map((price) => {
-        return price.price * Number(price.quantity);
-      })
-      .reduce((total, value) => total + value)
+    const showPrice =
+      cart &&
+      cart
+        .map((price) => {
+          return price.price * Number(price.quantity);
+        })
+        .reduce((total, value) => total + value);
 
-
-    console.log(showPrice);
-
-    const totalOrder = ship + Number(showPrice)
+    const totalOrder = ship + Number(showPrice);
     return (
-      <>
-        <p>Frete: R$ {ship}</p>
-        <p>SUBTOTAL: R$ {totalOrder.toFixed(2)}</p>
-      </>
+      <CartWrapper>
+        <Shipping>Frete: R$ {ship.toFixed(2)}</Shipping>
+        <Subtotal>SUBTOTAL:</Subtotal>  <Price>R$ {totalOrder.toFixed(2)}</Price>
+      </CartWrapper>
     );
   };
 
   const noCart = () => {
     return (
-      <div>
-        <p>Carrinho Vazio</p>
-        <p>Frete</p>
-        <p>SUBTOTAL:</p>
-        <span>R$00.00</span>
-      </div>
+      <CartWrapper>
+        <EmptyCart>Carrinho Vazio </EmptyCart>
+        <Shipping>Frete : R$ 00,00</Shipping>
+        <Subtotal>SUBTOTAL:</Subtotal> <Price> R$ 00,00</Price>
+      
+      </CartWrapper>
+    );
+  };
+
+  const paymentMethod = () => {
+    return (
+      <PaymentContainer>
+        <PaymentTitle>Formas de Pagamento</PaymentTitle>
+        <PaymentLabel>
+          <input
+            type="radio"
+            value="money"
+            name="payment"
+            onChange={({ target }) => setPayment(target.value)}
+          />
+          Dinheiro
+        </PaymentLabel>
+        <PaymentLabel>
+          <input
+            type="radio"
+            value="creditcard"
+            name="payment"
+            onChange={({ target }) => setPayment(target.value)}
+          />
+          Cartão de Crédito
+        </PaymentLabel>
+      </PaymentContainer>
     );
   };
 
   return (
-    <div>
+
+    <CartContainer>
       <p>Meu Carinho</p>
       {address && getAddress(address)}
       {/* {resDetail && restaurantInfo(resDetail)} */}
+
       {carrinho.length === 0 ? noCart() : getCart(carrinho)}
       {/* {cart && orderPrice( cart)} */}
-      <button disabled>Confirmar</button>
-      <p></p>
-    </div>
+
+      {paymentMethod()}
+
+      <ButtonConfirm onClick={() => createOrder(payment)}>Confirmar</ButtonConfirm>
+    </CartContainer>
+
+
   );
 };
