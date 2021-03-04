@@ -77,7 +77,7 @@ export const CardProduct = styled.div`
     margin: 10px;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
-    overflow:hidden;
+    /* overflow:hidden; */
 `
 export const ContainerInfoProduct = styled.div`
     margin:10px;
@@ -112,6 +112,31 @@ export const ButtonAddCart = styled.button`
     height: 30px;
     border-top-left-radius: 7px;
     border-bottom-right-radius: 7px;
+`
+export const ButtonRemoveToCart = styled.button`
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    right:0;
+    bottom:0;
+    border:1px solid red;
+    background-color:#fff;
+    list-style:none;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.29px;
+    text-align: center;
+    color: red;
+    width: 100px;
+    height: 30px;
+    border-top-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    z-index:1000;
 `
 export const ButtonQuantity = styled.button`
     display: flex;

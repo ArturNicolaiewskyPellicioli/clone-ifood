@@ -99,7 +99,19 @@ export const Header = () => {
             </Box>
         </NavBar>
         )
-    } else {
+
+        
+    }else if(states.page === "cart") {
+        return (
+        <NavBar>
+            <Back 
+                src={back} 
+                onClick={() => goToBack(history)}
+            />
+        </NavBar>
+        ) 
+    
+        }else {
         return (
             <>
             </>

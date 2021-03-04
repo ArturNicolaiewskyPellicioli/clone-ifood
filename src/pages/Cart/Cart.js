@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import IfutureContext from "../../Context/IfutureContext";
 import styled from "styled-components";
+import { ButtonRemoveToCart } from "../RestaurantDetail/styled";
 export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
   const { getFullAddress, getRestaurantDetail } = requests;
   const { address, cart, id, resDetail } = states;
+  const [carrinho, setCarrinho] = useState("");
   // const {shipping} = resDetail
   //Nome
   // Endereço
@@ -12,11 +14,16 @@ export const Cart = () => {
 
   useEffect(() => {
     getFullAddress();
-    getRestaurantDetail(id);
-    getCart(cart);
+    // getRestaurantDetail(id);
+   
+    // getCart(cart);
     // getPrice(resDetail,cart)
-    // setters.setPage('cart')
+    setters.setPage('cart')
   }, []);
+
+  useEffect(() => {
+    setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
+}, [states.cart])
 
   const CardProduct = styled.div`
     margin-top: 10px;
@@ -79,7 +86,7 @@ export const Cart = () => {
     );
   };
 
-  const restaurantInfo = (resDetail) => {
+  const restaurantInfo = () => {
     return (
       <div>
         <p>{resDetail.name}</p>
@@ -88,6 +95,13 @@ export const Cart = () => {
       </div>
     );
   };
+
+  const removeCart = (product) => {
+    const newcart = states.cart.filter((c) => { return c.id !== product.id })
+    setters.setCart(newcart)
+
+    localStorage.setItem("carrinho", JSON.stringify(newcart))
+  }
 
   const getCart = (cart) => {
     const showOrder = cart.map((product) => {
@@ -103,7 +117,7 @@ export const Cart = () => {
             <p>{product.description}</p>
             <p>R$ {(product.price ?? 0).toFixed(2)}</p>
           </ContainerInfoProduct>
-          <ButtonAddCart>Remover</ButtonAddCart>
+          <ButtonRemoveToCart onClick={()=>removeCart(product)}>Remover</ButtonRemoveToCart>
           {/* <ButtonAddCart onClick={() => addProduto(product, pathParams.id)}>adicionar</ButtonAddCart> */}
           <ButtonQuantity>{product.quantity}</ButtonQuantity>
         </CardProduct>
@@ -112,7 +126,7 @@ export const Cart = () => {
 
     return (
       <>
-        {restaurantInfo}
+        {restaurantInfo()}
         {showOrder}
         {orderPrice(resDetail.shipping, cart)}
       </>
@@ -155,8 +169,8 @@ export const Cart = () => {
     <div>
       <p>Meu Carinho</p>
       {address && getAddress(address)}
-      {resDetail && restaurantInfo(resDetail)}
-      {cart.length === 0 ? noCart() : getCart(cart)}
+      {/* {resDetail && restaurantInfo(resDetail)} */}
+      {carrinho.length === 0 ? noCart() : getCart(carrinho)}
       {/* {cart && orderPrice( cart)} */}
       <button disabled>Confirmar</button>
       <p></p>
