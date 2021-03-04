@@ -75,9 +75,20 @@
     color: #b8b8b8;
   }
 
-  .senha {
+  /* .senha {
     background-image: url("../Icons/SVG/senha.svg");
     background-repeat: no-repeat;
     background-position-y: center;
     background-position-x: 95%;
+  } */
+
+  .imgPass {
+    position: absolute;
+    top: 28px;
+    right: 16px;
+    cursor: pointer;
+  }
+
+  .divInputPass {
+    position: relative;
   }

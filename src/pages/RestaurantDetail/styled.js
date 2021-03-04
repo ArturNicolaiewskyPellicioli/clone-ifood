@@ -20,8 +20,8 @@ export const CardRestaurant = styled.div`
 export const ImgRestaurant = styled.img`
     border-top-left-radius:10px;
     border-top-right-radius:10px;
-    max-width: 75vw;
-    height: auto;
+    max-width: 100%;
+    max-height: 350px;
     object-fit: contain;
     margin-top: 10px;
 `
