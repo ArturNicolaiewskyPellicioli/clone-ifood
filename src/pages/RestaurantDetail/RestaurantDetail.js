@@ -8,17 +8,20 @@ import {Container, CardRestaurant, ImgRestaurant, RedText, GrayText, Title, Span
 
 const RestaurantDetail = () => {
     const { states, setters, requests } = useContext(IfutureContext)
+    const { address, cart, id, resDetail } = states;
     const pathParams = useParams()
     const [dropdown, setDropdown] = useState("");
     const modalRef = useRef(null);
     const [selectedProduct,setSelectedProduct]=useState("")
 
+
     const history = useHistory()
 
     useEffect(() => {
         requests.getRestaurantDetail(pathParams.id)
-        setters.setPage('restaurant-detail')
+        setters.setPage('/restaurant-detail')
     }, [])
+
 
 
     const toggleDropdown = (p) => {
@@ -39,6 +42,7 @@ const RestaurantDetail = () => {
             document.body.removeEventListener("click", closeDropdown);
         }
     };
+
 
     const showDetail = states.resDetail.products && states.resDetail.products.map((product) => {
         
@@ -69,22 +73,11 @@ const RestaurantDetail = () => {
             </CardRestaurant>
         )
     }
-
-    const goToCart = () => {
-        try {
-            goTo(history, "/cart", "")
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
     return (
         <Container>
             {showRestaurant()}
             <Title><b>Produtos</b></Title>
             {showDetail}
-            <button onClick={goToCart}>Ver Carrinho</button>
         </Container>
     )
 }

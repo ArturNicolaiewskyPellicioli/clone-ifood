@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import IfutureContext from "../../Context/IfutureContext";
-import styled from "styled-components";
+import {Container, CardRestaurant, ImgRestaurant, RedText, GrayText, Title, SpanPadding, CardProduct, ContainerInfoProduct, ImgProduct, ButtonAddCart, ButtonQuantity, TextItem } from '../RestaurantDetail/styled'
+
+
 export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
   const { getFullAddress, getRestaurantDetail } = requests;
@@ -14,60 +16,10 @@ export const Cart = () => {
     getFullAddress();
     getRestaurantDetail(id);
     getCart(cart);
+    setters.setPage('/cart')
     // getPrice(resDetail,cart)
-    // setters.setPage('cart')
   }, []);
 
-  const CardProduct = styled.div`
-    margin-top: 10px;
-    width: 100%;
-    display: flex;
-    border-radius: 15px;
-    border: 1px solid;
-    position: relative;
-  `;
-  const ContainerImg = styled.div`
-    width: 20%;
-    min-width: 130px;
-  `;
-
-  const ImgProduct = styled.img`
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    width: 100%;
-  `;
-  const ContainerInfoProduct = styled.div`
-    padding: 10px;
-    width: 80%;
-  `;
-  const PRed = styled.p`
-    margin-top: 10px;
-    color: red;
-  `;
-  const ButtonAddCart = styled.button`
-    height: 40px;
-    padding: 10px;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    border: 1px solid black;
-    background-color: #fff;
-    list-style: none;
-    text-decoration: none;
-  `;
-  const ButtonQuantity = styled.button`
-    height: 40px;
-    padding: 10px;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    right: 0;
-    bottom: 0;
-    color: red;
-    border: 1px solid red;
-    background-color: #fff;
-  `;
   const getAddress = (address) => {
     return (
       <div>
@@ -81,11 +33,11 @@ export const Cart = () => {
 
   const restaurantInfo = (resDetail) => {
     return (
-      <div>
-        <p>{resDetail.name}</p>
-        <p>{resDetail.address}</p>
-        <p>{resDetail.deliveryTime} min</p>
-      </div>
+      <CardRestaurant>
+        <RedText>{resDetail.name}</RedText>
+        <GrayText>{resDetail.address}</GrayText>
+        <GrayText>{resDetail.deliveryTime} min</GrayText>
+      </CardRestaurant>
     );
   };
 
@@ -93,15 +45,11 @@ export const Cart = () => {
     const showOrder = cart.map((product) => {
       return (
         <CardProduct key={product.id}>
-          <ContainerImg>
             <ImgProduct src={product.image} />
-          </ContainerImg>
           <ContainerInfoProduct>
-            <h4>
-              <PRed>{product.product}</PRed>
-            </h4>
-            <p>{product.description}</p>
-            <p>R$ {(product.price ?? 0).toFixed(2)}</p>
+            <RedText>{product.product}</RedText>
+            <GrayText>{product.description}</GrayText>
+            <GrayText>R$ {(product.price ?? 0).toFixed(2)}</GrayText>
           </ContainerInfoProduct>
           <ButtonAddCart>Remover</ButtonAddCart>
           {/* <ButtonAddCart onClick={() => addProduto(product, pathParams.id)}>adicionar</ButtonAddCart> */}
@@ -152,7 +100,7 @@ export const Cart = () => {
   };
 
   return (
-    <div>
+    <Container>
       <p>Meu Carinho</p>
       {address && getAddress(address)}
       {resDetail && restaurantInfo(resDetail)}
@@ -160,6 +108,6 @@ export const Cart = () => {
       {/* {cart && orderPrice( cart)} */}
       <button disabled>Confirmar</button>
       <p></p>
-    </div>
+    </Container>
   );
 };
