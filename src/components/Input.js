@@ -1,7 +1,7 @@
 import React from "react";
 import './Input.css';
 
-function Input({ label, type, name, value, onChange, error, onBlur,onFocus, placeholder, className }) {
+function Input({ label, type, name, value, onChange, error, onBlur,onFocus, placeholder, className, onClick, pattern }) {
   return (
     <div className="label-float">
       <input
@@ -15,6 +15,8 @@ function Input({ label, type, name, value, onChange, error, onBlur,onFocus, plac
         onFocus={onFocus}
         placeholder={placeholder}
         required
+        onClick={onClick}
+        pattern={pattern}
       />
       <label htmlFor={name}>
         {label}

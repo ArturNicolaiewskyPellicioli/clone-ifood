@@ -5,6 +5,7 @@ import Modal from "../../components/Modal/Modal"
 import IfutureContext from "../../Context/IfutureContext"
 import { goTo } from "../../routes/Coordinator"
 import {Container, CardRestaurant, ImgRestaurant, RedText, GrayText, Title, SpanPadding, CardProduct, ContainerInfoProduct, ImgProduct, ButtonAddCart, ButtonQuantity, TextItem } from "./styled"
+import Loader from '../../components/Loader'
 
 const RestaurantDetail = () => {
     const { states, setters, requests } = useContext(IfutureContext)
@@ -73,12 +74,28 @@ const RestaurantDetail = () => {
             </CardRestaurant>
         )
     }
-    return (
+
+    const goToCart = () => {
+        try {
+            goTo(history, "/cart", "")
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    return ( 
+        <>
+        {states.isLoading ? <Loader/> : 
+        
         <Container>
-            {showRestaurant()}
-            <Title><b>Produtos</b></Title>
-            {showDetail}
+                    {showRestaurant()}
+                    <Title><b>Produtos</b></Title>
+                    {showDetail}
+                    <button onClick={goToCart}>Ver Carrinho</button>
         </Container>
+        }
+        </> 
     )
 }
 export default RestaurantDetail

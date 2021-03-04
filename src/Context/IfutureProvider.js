@@ -13,6 +13,7 @@ const IfutureProvider = (props) => {
   const [page, setPage] = useState();
   const [id, setId] = useState("");
   const [searchPage, setSearchPage] = useState(false);
+  const [isLoading, setLoading] = useState(false)
 
   const getProfile = async (event) => {
     try {
@@ -58,12 +59,14 @@ const IfutureProvider = (props) => {
 
   const getRestaurantDetail = async (id) => {
     try {
+      setLoading(true)
       // const response = await axios.get(`${baseURL}/restaurants/${pathParams}`, { headers })
       const response = await axios.get(`${baseURL}/restaurants/${id}`, {
         headers,
       });
       setResDetail(response.data.restaurant);
       console.log(response.data.restaurant);
+      setLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -114,6 +117,7 @@ const IfutureProvider = (props) => {
     page,
     searchPage,
     id,
+    isLoading,
   };
 
   const setters = {
@@ -125,6 +129,7 @@ const IfutureProvider = (props) => {
     setResDetail,
     setPage,
     setSearchPage,
+    setLoading,
   };
   const requests = {
     getProfile,

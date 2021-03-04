@@ -31,7 +31,7 @@ export const Input = styled.input`
     align-content: center;
     align-self: center;
     text-indent: 10%;
-    width: 23.5rem;
+    width: 93vw;
     height: 3.125rem;
     color: #d0d0d0;
     font-stretch: normal;
