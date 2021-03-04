@@ -1,5 +1,6 @@
 import React, { useEffect, useContext  } from "react"
 import IfutureContext from '../../../Context/IfutureContext'
+import {BoxCard, SubTotal, OrderDate, RestaurantName} from './OrderHistory_Styled'
 
 //ATENCAO
 //ARRUMAR DEPOIS DE FAZER OS PEDIDOS DE COMIDO DO COISO COISADO!
@@ -7,22 +8,37 @@ import IfutureContext from '../../../Context/IfutureContext'
 
 
 const OrderHistory = () => {
-    const { states,  requests } = useContext(IfutureContext)
+    const { states, setters, requests } = useContext(IfutureContext)
 
     useEffect(() => {
-        requests.getOrdersHistory()
 
+        requests.getOrdersHistory()
+        
     }, [])
 
-    if(!states.orderHistory){
-        
-        states.orderhistory.map((order) => {
-            return(
-                <div>
-                    {order.name}
-                </div>
-            )
-        })
+    if(states.orderHistory){
+
+        return(
+            <div>
+                oi
+            </div>
+        )
+        // let orderHistory = states.orderHistory
+
+        // return(
+        //     <BoxCard>
+        //         <RestaurantName>Burguer Vila Madalena</RestaurantName>
+        //         <OrderDate>23 de Outubro 2019</OrderDate>
+        //         <SubTotal>Subtotal R$89,00</SubTotal>
+        //     </BoxCard>
+        // )
+        // orderHistory && orderHistory.map((order) => {
+        //     return(
+        //         <div>
+        //             {order.name}
+        //         </div>
+        //     )
+        // })
         
     }
     return(
