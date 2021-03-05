@@ -22,8 +22,10 @@ const Profile = () => {
                 <LabelsProfile>{states.profile.name}</LabelsProfile>
                 <LabelsProfile>{states.profile.email}</LabelsProfile>
                 <LabelsProfile>{states.profile.cpf}</LabelsProfile>
+
                 <Button onClick={() => goTo(history, "profile/edit", "")}>
                 <Img src={require('../../Images/editsymbol.png')}/></Button>
+
             </UserBox>
             <Address />
             <MiniGrid>

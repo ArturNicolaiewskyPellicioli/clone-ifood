@@ -24,6 +24,11 @@ export const Cart = () => {
   const { address, cart, id, resDetail } = states;
   const [carrinho, setCarrinho] = useState("");
   const [payment, setPayment] = useState(null);
+  const [confirmButtonStats , setConfirmButtonStats] = useState('disabled')
+  let restaurantDetails = JSON.parse(localStorage.getItem("restaurantDetails"))
+  let carrinhoToVerification = JSON.parse(localStorage.getItem("carrinho"))
+  let newCart = []
+  // console.log(restaurantDetails)
 
   useEffect(() => {
     getFullAddress();
@@ -32,8 +37,14 @@ export const Cart = () => {
   }, []);
 
   useEffect(() => {
+    cartRestaurantVerification()
+  }, [restaurantDetails])
+
+  useEffect(() => {
     setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
-}, [states.cart])
+  }, [states.cart])
+
+
 
   const getAddress = (address) => {
     return (
@@ -46,12 +57,47 @@ export const Cart = () => {
     );
   };
 
+  const cartRestaurantVerification = () => {
+
+    
+  // console.log(carrinhoToVerification)
+  // carrinho ?? carrinho.map((item) => {
+  //   console.log(item.id)
+  // })    
+
+  // console.log(carrinhoToVerification, restaurantDetails)
+  restaurantDetails && restaurantDetails.products.map((prod) => {
+      // let filteredCart = carrinhoToVerification && carrinhoToVerification.filter( item => item.id === prod.id)
+      carrinhoToVerification && carrinhoToVerification.map((item) => {
+        if(item.id ===  prod.id) {
+            // let ultimateFilter = carrinhoToVerification.filter(item => item.id === filteredCart[0].id)
+            // console.log(ultimateFilter)
+          // console.log(filteredCart)
+          newCart.push(item);
+          console.log(newCart)
+        
+          localStorage.setItem('carrinho', JSON.stringify(newCart))
+        }
+        
+      })
+      
+    
+    })
+    // setCarrinho(newCart)
+    // setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
+  }
+
+  
+
+  
+  console.log('carrinho', carrinho)
+
   const restaurantInfo = () => {
     return (
       <CardRestaurant>
-        <RedText>{resDetail.name}</RedText>
-        <GrayText>{resDetail.address}</GrayText>
-        <GrayText>{resDetail.deliveryTime} min</GrayText>
+        <RedText>{restaurantDetails.name}</RedText>
+        <GrayText>{restaurantDetails.address}</GrayText>
+        <GrayText>{restaurantDetails.deliveryTime} min</GrayText>
       </CardRestaurant>
     );
   };
@@ -62,6 +108,10 @@ export const Cart = () => {
 
     localStorage.setItem("carrinho", JSON.stringify(newcart))
   }
+
+  useEffect(() => {
+    payment && setConfirmButtonStats('')
+  },[payment])
 
   const getCart = (cart) => {
     const showOrder = cart.map((product) => {
@@ -84,14 +134,14 @@ export const Cart = () => {
       <>
         {restaurantInfo()}
         {showOrder}
-        {orderPrice(resDetail.shipping, carrinho)}
+        {orderPrice(restaurantDetails.shipping, carrinho)}
       </>
     );
   };
 
   const orderPrice = () => {
-    console.log(resDetail.shipping)
-    const ship = resDetail.shipping;
+    // console.log(restaurantDetails.shipping)
+    const ship = restaurantDetails.shipping;
     const showPrice =
       carrinho &&
       carrinho
@@ -152,13 +202,16 @@ export const Cart = () => {
     <Container>
     <CartContainer>
       {address && getAddress(address)}
-      {/* {resDetail && restaurantInfo(resDetail)} */}
+      {/* {restaurantDetails && restaurantInfo(resDetail)} */}
 
       {carrinho.length === 0 ? noCart() : getCart(carrinho)}
       {/* {cart && orderPrice( cart)} */}
 
       {paymentMethod()}
-      <Button  onClick={() => createOrder(payment)}>Confirmar</Button>
+
+
+      <Button disabled={confirmButtonStats} onClick={() => createOrder(payment)}>Confirmar</Button>
+
     </CartContainer>
     </Container>
 

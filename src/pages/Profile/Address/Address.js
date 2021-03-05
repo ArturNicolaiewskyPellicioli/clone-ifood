@@ -19,7 +19,7 @@ const Address = () => {
                 <AddressTitle>Endereço Cadastrado</AddressTitle>
                 <MiniBlock>
                     <Info>{`${states.address.street}, number: ${states.address.number} - ${states.address.city}, ${states.address.state}`}</Info>
-                    <Button onClick={() => goTo(history, "profile/edit/address", "")}> <Img src={require('../../../Images/editsymbol.png')} /></Button>
+                    <Button onClick={() => goTo(history, "profile/edit/address", "")}> <Img src={require('../../../Icons/PNG/editsymbol.png')} /></Button>
                 </MiniBlock>
             </BoxAddress>
         )

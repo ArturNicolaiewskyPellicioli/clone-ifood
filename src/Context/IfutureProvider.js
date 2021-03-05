@@ -77,6 +77,7 @@ const IfutureProvider = (props) => {
       });
       setResDetail(response.data.restaurant);
       console.log(response.data.restaurant);
+      localStorage.setItem("restaurantDetails", JSON.stringify(response.data.restaurant))
       setLoading(false);
     } catch (error) {
       console.log(error);
