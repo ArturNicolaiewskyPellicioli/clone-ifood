@@ -12,4 +12,4 @@ Trata-se de uma versão de um aplicativo tipo Rappy, UberEats e Ifood. Foi reali
 
 *Diego Galdino 
 
-Link do Surge: wiggly-decision.surge.sh 
+Link do Surge: adjoining-glass.surge.sh 
