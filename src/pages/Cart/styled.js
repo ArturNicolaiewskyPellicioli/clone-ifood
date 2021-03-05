@@ -17,13 +17,6 @@ export const AddressContainer = styled.div`
   margin: 0.75rem;
 `;
 
-export const AddressTitle = styled.p`
-  font-size: 1rem;
-  color: #b8b8b8;
-  font-weight: bold;
-  padding: 0.75rem;
-`;
-
 export const Address = styled.p`
   font-size: 1rem;
   font-weight: bold;

@@ -8,11 +8,14 @@ export const Container = styled.div`
     align-items: center;
     max-width:100vw;
     padding:10px;
+    padding-top: 0px;
+    margin-top:0;
     box-sizing:border-box;
 `
 // CardRestaurant
 export const CardRestaurant = styled.div`
     display: flex;
+    width: 100%;
     flex-direction: column;
     color:#d1d1d1;
     text-align: left;

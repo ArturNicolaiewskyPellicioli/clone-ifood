@@ -30,7 +30,7 @@ const EditAddress = () => {
     }
 
     useEffect(() => {
-        setters.setPage('home/profile/edit/address')
+        setters.setPage('profile/edit/address')
     }, [])
 
     

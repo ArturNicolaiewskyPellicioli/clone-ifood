@@ -21,17 +21,16 @@ const EditProfile = () => {
             const response = await axios.put(`${baseURL}/profile`,form,{headers})
             console.log(response)
             alert("Success")
-            goTo(history, "/home/profile", "")
+            goTo(history, "/profile/edit", "")
         } catch(error) {
             console.log(error)
         }
     }
 
     useEffect(() => {
-        setters.setPage('home/profile/edit')
+        setters.setPage('profile/edit')
     }, [])
 
-    
     return(
         <Container>
             {states.profile.name &&
@@ -43,7 +42,6 @@ const EditProfile = () => {
             </form>
             }
         </Container>
-    
     )
 }
 export default EditProfile

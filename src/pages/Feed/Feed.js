@@ -91,11 +91,6 @@ const getHeader=()=>{
             }
     }}
 
-    useEffect(() => {
-        // setters.setPage("feed")
-        // console.log(headers)
-        // getRestaurants()
-    },[headers])
 
     useEffect(() => {
         clear()

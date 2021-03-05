@@ -7,45 +7,39 @@ export const LabelsProfile = styled.div`
 `
 
 export const UserBox = styled.div`
-      font-family: Roboto;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    margin: 3vh;
-
+  display: grid;
+  width: 100%;
+  font-family: Roboto;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  margin-top: 3vh;
+  gap: 5px;
 `
-
 export const Button = styled.button`
-text-align:center;
+  text-align:center;
   color: black;
   border:none;
   background-color:white;
   grid-column-start:2;
   grid-row-start:1;
   grid-row-end: 4;
-  
 `
 
 export const Img = styled.img`
-    height: 3vh;
+  height: 3vh;
 `
 export const LabelOrder = styled.label`
-margin-top: 3vh;
-margin-bottom:3vh;
-text-align:center;
-grid-column-start: 2;
-grid-column-end: 2;
-font-family: Roboto;
-width:100%;
-
-
-
-border-bottom: solid black 2px;
+  margin-top: 3vh;
+  margin-bottom:3vh;
+  text-align:center;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  font-family: Roboto;
+  width:100%;
+  border-bottom: solid black 2px;
 `
 
 export const MiniGrid = styled.div`
-
-display:grid;
-grid-template-columns: 1fr 30fr 1fr;
-
+  display:grid;
+  grid-template-columns: 1fr 30fr 1fr;
 `
