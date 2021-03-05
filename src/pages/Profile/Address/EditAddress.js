@@ -5,8 +5,8 @@ import IfutureContext from '../../../Context/IfutureContext'
 import {baseURL, headers} from '../../../parameters'
 import { goTo } from "../../../routes/Coordinator"
 import useForm from "../../../hooks/useForm"
-
-import {FieldSet, Button, Input} from './EditAddress_styled.js'
+import {Container, Button, Box} from '../../Login/styled'
+import Input from '../../../components/Input';
 
 
 
@@ -29,35 +29,22 @@ const EditAddress = () => {
         }
     }
 
+    useEffect(() => {
+        setters.setPage('home/profile/edit/address')
+    }, [])
+
     
     return(
+        <Container>
             <form onSubmit={editAddress}>
-             <FieldSet><legend>Street∗</legend>
-            <Input placeholder="Text" type="text" name="street" value={form.street} onChange={onChange}/>
-            </FieldSet>
-
-            <FieldSet><legend>Number∗</legend>
-            <Input placeholder="Text" type="number" name="number" value={form.number} onChange={onChange}/>
-            </FieldSet>
-
-            <FieldSet><legend>Neighbourhood∗</legend>
-            <Input placeholder="Text" type="text" name="neighbourhood" value={form.neighbourhood} onChange={onChange}/>
-            </FieldSet>
-
-            <FieldSet><legend>City∗</legend>
-            <Input placeholder="Text" type="text" name="city" value={form.city} onChange={onChange}/>
-            </FieldSet>
-            
-            <FieldSet><legend>State∗</legend>
-            <Input placeholder="Text" type="text" name="state" value={form.state} onChange={onChange}/>
-            </FieldSet>
-
-            <FieldSet><legend>Complement∗</legend>
-            <Input placeholder="Text" type="text" name="complement" value={form.complement} onChange={onChange}/>
-            </FieldSet>
-
-            <Button colorScheme="red">Save</Button>
+            <Input label="Street" type="text" pattern='[a-zA-Z]+' name="street" {...form.street} onChange={onChange}/>
+            <Input label="number" type="number" name="number" {...form.number} onChange={onChange}/>
+            <Input label="neighbourhood" type="text" pattern='[a-zA-Z]+' name="neighbourhood" {...form.neighbourhood} onChange={onChange}/>
+            <Input label="city" type="text" pattern='[a-zA-Z]+' name="city" {...form.city} onChange={onChange}/>
+            <Input label="state" type="text" pattern='[a-zA-Z]+' name="state" {...form.state} onChange={onChange}/>
+            <Input label="complement" type="text" name="complement" {...form.complement} onChange={onChange}/>                <Button>Criar</Button>
             </form>
+        </Container>
         
     )
 }

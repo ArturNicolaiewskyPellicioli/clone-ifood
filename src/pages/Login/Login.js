@@ -47,8 +47,8 @@ const Login = (props) => {
     return (
     <Container>
         <Logo/>
-        <BoxTitle>
-            <Title>Entrar</Title>
+            <BoxTitle>
+                <Title>Entrar</Title>
             </BoxTitle>    
         <form onSubmit={login}>
             <Input label="E-mail" type="email" name="email" {...form.email} onChange={onChange}/>

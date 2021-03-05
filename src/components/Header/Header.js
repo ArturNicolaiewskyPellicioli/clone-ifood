@@ -75,10 +75,35 @@ export const Header = () => {
             <Back 
                 src={back} 
                 onClick={() => goToBack(history)}
-            />          
+            />
+                      
         </NavBar>
         )
-    } else if(states.page === "profile") {
+    } else if(states.page === 'home/profile/edit/address') {
+        return (
+        <NavBar>
+            <Back 
+                src={back} 
+                onClick={() => goToBack(history)}
+            />
+            <Box>
+                <Title>Entrar</Title>
+            </Box>   
+        </NavBar>
+        )
+    } else if(states.page === "home/profile/edit") {
+        return (
+        <NavBar>
+            <Back 
+                src={back} 
+                onClick={() => goToBack(history)}
+            />
+            <Box>
+                <Title>Entrar</Title>
+            </Box>   
+        </NavBar>
+        )
+    }  else if(states.page === "profile") {
         return (
         <NavBar>
             <Back 
@@ -108,6 +133,9 @@ export const Header = () => {
                 src={back} 
                 onClick={() => goToBack(history)}
             />
+            <Box>
+                <Title>Meu carrinho</Title>
+            </Box> 
         </NavBar>
         ) 
     

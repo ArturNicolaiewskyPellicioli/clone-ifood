@@ -29,7 +29,7 @@ const Router = () => {
                 <Route exact path="/signup">
                     <Signup />
                 </Route>
-                <Route exact path="/addres">
+                <Route exact path="/address">
                     <AddAdress />
                 </Route>
                 <Route exact path="/home/profile">

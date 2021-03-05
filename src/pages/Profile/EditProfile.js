@@ -5,7 +5,8 @@ import { goTo } from '../../routes/Coordinator'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import axios from 'axios'
 import {baseURL, headers} from '../../parameters'
-import {Button, Input, FieldSet} from './EditProfile_styled.js'
+import Input from '../../components/Input'
+import { Container, Button } from '../Login/styled'
 
 const EditProfile = () => {
     const { states, setters, requests } = useContext(IfutureContext)
@@ -15,7 +16,7 @@ const EditProfile = () => {
     )
     const editProfile = async (event) => {
         event.preventDefault()
-        try{
+        try {
             console.log()
             const response = await axios.put(`${baseURL}/profile`,form,{headers})
             console.log(response)
@@ -26,24 +27,23 @@ const EditProfile = () => {
         }
     }
 
+    useEffect(() => {
+        setters.setPage('home/profile/edit')
+    }, [])
+
     
     return(
+        <Container>
+            {states.profile.name &&
             <form onSubmit={editProfile}>
-            <FieldSet><legend>Name∗</legend>
-            <Input placeholder="Text" type="text" name="name" value={form.name} onChange={onChange}/>
-            </FieldSet>
-            
-            <FieldSet><legend>CPF∗</legend>
-            <Input placeholder="Text" type="text" name="cpf" value={form.cpf} onChange={onChange}/>
-            </FieldSet>
-            
-            <FieldSet><legend>E-mail∗</legend>
-            <Input placeholder="Text" type="email" name="email" value={form.email} onChange={onChange}/>
-            </FieldSet>
-
-            <Button >Save</Button>
+            <Input placeholder={states.profile.name} label="Nome" type="text" name="name" {...form.name} onChange={onChange}/>
+            <Input placeholder={states.profile.cpf} label="CPF" type="text" name="cpf" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" {...form.cpf} onChange={onChange}/>
+            <Input placeholder={states.profile.email} label="E-mail" type="email" name="email" {...form.email} onChange={onChange}/>
+            <Button type='submit'>Save</Button>
             </form>
-        
+            }
+        </Container>
+    
     )
 }
 export default EditProfile

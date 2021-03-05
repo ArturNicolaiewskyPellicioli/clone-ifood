@@ -170,7 +170,7 @@ export const Cart = () => {
   return (
 
     <CartContainer>
-      <p>Meu Carinho</p>
+  
       {address && getAddress(address)}
       {/* {resDetail && restaurantInfo(resDetail)} */}
 

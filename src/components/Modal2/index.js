@@ -1,13 +1,19 @@
 import React, { useContext, useState } from 'react';
 import { render } from 'react-dom';
-import useModal from 'react-hooks-use-modal';
 import IfutureContext from '../../Context/IfutureContext';
+import useModal from 'react-hooks-use-modal'
 import { ButtonAddCart, ButtonRemoveToCart } from '../../pages/RestaurantDetail/styled';
+import {Select, AddButton, ModalTitle} from './styled'
 
 const modalStyle = {
-  backgroundColor: '#fff',
-  padding: '60px 100px',
-  borderRadius: '10px'
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  justifySelf:'center',
+  backgroundColor: '#ffffff',
+  padding: '60px 28px',
+  borderRadius: '10px',
+  width: '85vw',
 };
 
 const ModalBox = (props) => {
@@ -64,9 +70,10 @@ const ModalBox = (props) => {
 
       <Modal>
         <div style={modalStyle}>
-          <p>Selecione a quantidade desejada</p>
+          <ModalTitle>Selecione a quantidade desejada</ModalTitle>
 
-          <select name="quantity" onChange={onChangeQuantity}>
+          <Select name="quantity" onChange={onChangeQuantity}>
+            {console.log (Select)}
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -76,11 +83,11 @@ const ModalBox = (props) => {
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
-          </select>
-          <button onClick={() => {
+          </Select>
+          <AddButton onClick={() => {
             requests.addProduto(props.product, quantity, props.id)
             switchClose()
-          }} >Adicionar ao Carrinho</button>
+          }} >Adicionar ao Carrinho</AddButton>
         </div>
       </Modal>
     </div>
