@@ -1,16 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import IfutureContext from "../../Context/IfutureContext";
-
-import styled from "styled-components";
-
-import { ButtonRemoveToCart } from "../RestaurantDetail/styled";
-
-import {
-  Address,
-  AddressContainer,
-  AddressTitle,
-  ButtonConfirm,
-  CardProduct,
+import { ButtonRemoveToCart, Container } from "../RestaurantDetail/styled";
+import {CardProduct, CardRestaurant, ContainerInfoProduct, ImgProduct, RedText} from "../RestaurantDetail/styled"
+import {Button} from "../Login/styled"
+import {Address,
   CartContainer,
   CartWrapper,
   EmptyCart,
@@ -21,58 +14,90 @@ import {
   Shipping,
   Subtotal,
   GrayText,
-  ButtonAddCart,
   ButtonQuantity
 } from "./styled";
-import Home from "../Home";
-import { goTo } from "../../routes/Coordinator";
-import { CardRestaurant, ContainerInfoProduct, ImgProduct, RedText } from "../RestaurantDetail/styled";
+import { BoxAddress, AddressTitle} from "../Profile/Address/Address_styled";
 
 export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
   const { getFullAddress, getRestaurantDetail, createOrder } = requests;
   const { address, cart, id, resDetail } = states;
-
   const [carrinho, setCarrinho] = useState("");
-
   const [payment, setPayment] = useState(null);
-
-  // const {shipping} = resDetail
-  //Nome
-  // Endereço
-  //Delivery time
+  const [confirmButtonStats , setConfirmButtonStats] = useState('disabled')
+  let restaurantDetails = JSON.parse(localStorage.getItem("restaurantDetails"))
+  let carrinhoToVerification = JSON.parse(localStorage.getItem("carrinho"))
+  let newCart = []
+  // console.log(restaurantDetails)
 
   useEffect(() => {
     getFullAddress();
-
-    // getRestaurantDetail(id);
-   
-    // getCart(cart);
-    // getPrice(resDetail,cart)
     setters.setPage('cart')
+    window.scrollTo(0, 0)
   }, []);
 
   useEffect(() => {
+    cartRestaurantVerification()
+  }, [restaurantDetails])
+
+  useEffect(() => {
     setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
-}, [states.cart])
+  }, [states.cart])
+
+
 
   const getAddress = (address) => {
     return (
-      <AddressContainer>
+      <BoxAddress>
         <AddressTitle>Endereço de Entrega</AddressTitle>
         <Address>
-          {address.street}, {address.number}
+          Rua {address.street}, {address.number}
         </Address>
-      </AddressContainer>
+      </BoxAddress>
     );
   };
+
+  const cartRestaurantVerification = () => {
+
+    
+  // console.log(carrinhoToVerification)
+  // carrinho ?? carrinho.map((item) => {
+  //   console.log(item.id)
+  // })    
+
+  // console.log(carrinhoToVerification, restaurantDetails)
+  restaurantDetails && restaurantDetails.products.map((prod) => {
+      // let filteredCart = carrinhoToVerification && carrinhoToVerification.filter( item => item.id === prod.id)
+      carrinhoToVerification && carrinhoToVerification.map((item) => {
+        if(item.id ===  prod.id) {
+            // let ultimateFilter = carrinhoToVerification.filter(item => item.id === filteredCart[0].id)
+            // console.log(ultimateFilter)
+          // console.log(filteredCart)
+          newCart.push(item);
+          console.log(newCart)
+        
+          localStorage.setItem('carrinho', JSON.stringify(newCart))
+        }
+        
+      })
+      
+    
+    })
+    // setCarrinho(newCart)
+    // setCarrinho(JSON.parse(localStorage.getItem("carrinho")))
+  }
+
+  
+
+  
+  console.log('carrinho', carrinho)
 
   const restaurantInfo = () => {
     return (
       <CardRestaurant>
-        <RedText>{resDetail.name}</RedText>
-        <GrayText>{resDetail.address}</GrayText>
-        <GrayText>{resDetail.deliveryTime} min</GrayText>
+        <RedText>{restaurantDetails.name}</RedText>
+        <GrayText>{restaurantDetails.address}</GrayText>
+        <GrayText>{restaurantDetails.deliveryTime} min</GrayText>
       </CardRestaurant>
     );
   };
@@ -83,6 +108,10 @@ export const Cart = () => {
 
     localStorage.setItem("carrinho", JSON.stringify(newcart))
   }
+
+  useEffect(() => {
+    payment && setConfirmButtonStats('')
+  },[payment])
 
   const getCart = (cart) => {
     const showOrder = cart.map((product) => {
@@ -105,14 +134,14 @@ export const Cart = () => {
       <>
         {restaurantInfo()}
         {showOrder}
-        {orderPrice(resDetail.shipping, carrinho)}
+        {orderPrice(restaurantDetails.shipping, carrinho)}
       </>
     );
   };
 
   const orderPrice = () => {
-    console.log(resDetail.shipping)
-    const ship = resDetail.shipping;
+    // console.log(restaurantDetails.shipping)
+    const ship = restaurantDetails.shipping;
     const showPrice =
       carrinho &&
       carrinho
@@ -167,21 +196,24 @@ export const Cart = () => {
     );
   };
 
-  return (
-
-    <CartContainer>
   
+
+  return (
+    <Container>
+    <CartContainer>
       {address && getAddress(address)}
-      {/* {resDetail && restaurantInfo(resDetail)} */}
+      {/* {restaurantDetails && restaurantInfo(resDetail)} */}
 
       {carrinho.length === 0 ? noCart() : getCart(carrinho)}
       {/* {cart && orderPrice( cart)} */}
 
       {paymentMethod()}
 
-      <ButtonConfirm  onClick={() => createOrder(payment)}>Confirmar</ButtonConfirm>
-    </CartContainer>
 
+      <Button disabled={confirmButtonStats} onClick={() => createOrder(payment)}>Confirmar</Button>
+
+    </CartContainer>
+    </Container>
 
   );
 };

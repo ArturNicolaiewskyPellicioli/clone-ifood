@@ -6,10 +6,14 @@ import { baseURL, headers } from "../parameters"
 import IfutureContext from "../Context/IfutureContext"
 import {Button} from './Login/styled'
 import { Container } from "./Login/styled"
+
 import { goTo } from "../routes/Coordinator"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
+
 const AddAdress = () =>{
+
+    const history = useHistory()
 
     const {  setters } = useContext(IfutureContext)
     const history = useHistory()
@@ -28,8 +32,10 @@ const AddAdress = () =>{
             const response = await axios.put(`${baseURL}/address`, form , {headers:{auth:localStorage.getItem('token')}})
             console.log(response)
             localStorage.setItem("token",response.data.token)
+
             localStorage.setItem("carrinho",'[]')
             goTo(history, '/feed', '')
+
         } catch (error) {
             console.log(error.response)
         }

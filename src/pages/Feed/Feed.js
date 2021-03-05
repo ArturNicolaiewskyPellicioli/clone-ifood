@@ -80,21 +80,51 @@ const Feed = () => {
       setCurrentCategory(null);
       event.target.classList.remove("active");
     }
+
   };
 
-  const filterListInput = () => {
-    if (restaurantsList && restaurantsList.length > 0) {
-      if (listCategory) {
-        const list = listCategory.filter((rest) =>
-          rest.name.toLowerCase().includes(form.name.toLowerCase())
-        );
-        setFilteredRestaurantsListInput(list);
-      } else {
-        const list = restaurantsList.filter((rest) =>
-          rest.name.toLowerCase().includes(form.name.toLowerCase())
-        );
-        setFilteredRestaurantsListInput(list);
-      }
+
+    
+    const filterListInput = () => {
+        if(restaurantsList && restaurantsList.length > 0){
+            if(listCategory) {
+        const list = listCategory.filter(rest => rest.name.toLowerCase().includes(form.name.toLowerCase()))
+        setFilteredRestaurantsListInput(list)
+            } else {
+                const list = restaurantsList.filter(rest => rest.name.toLowerCase().includes(form.name.toLowerCase()))
+                setFilteredRestaurantsListInput(list)
+            }
+    }}
+
+    const filterListButton = () => {
+        if(restaurantsList && restaurantsList.length > 0){
+            if(currentCategory !== null) {
+
+        const listCategory = restaurantsList.filter(rest => rest.category.toLowerCase().includes(currentCategory.toLowerCase()))
+        setListCategoryState(listCategory)
+        setFilteredRestaurantsList(listCategory)
+            } else {
+                setListCategoryState(restaurantsList)
+                setFilteredRestaurantsList(restaurantsList)
+            }
+    }}
+
+
+    useEffect(() => {
+        clear()
+    },[states.searchPage])
+
+    useEffect(() => {
+        filterListInput()
+    }, [form])
+    
+    useEffect(() => {
+        filterListButton()
+    }, [currentCategory])
+
+    const goToDetails = (id) => {
+        goTo(history, "/restaurant-detail", `/${id}`)
+
     }
   };
 

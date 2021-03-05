@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import IfutureContext from "./IfutureContext";
 import { baseURL, headers } from "../parameters";
+import { goTo } from "../routes/Coordinator";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const IfutureProvider = (props) => {
   const [profile, setProfile] = useState([]);
@@ -16,11 +18,19 @@ const IfutureProvider = (props) => {
   const [isLoading, setLoading] = useState(false);
   const [order, setOrder] = useState(false);
 
+  const history = useHistory()
+
 
   const getProfile = async (event) => {
     try {
       const response = await axios.get(`${baseURL}/profile`, { headers });
       setProfile(response.data.user);
+      console.log(response.data)
+
+      if (response.data.user.hasAddress === false){ 
+        console.log(response.data.user.hasAddress)
+        goTo(history, "/address","")
+      }
     } catch (error) {
       console.log(error);
     }
@@ -68,6 +78,7 @@ const IfutureProvider = (props) => {
       });
       setResDetail(response.data.restaurant);
       console.log(response.data.restaurant);
+      localStorage.setItem("restaurantDetails", JSON.stringify(response.data.restaurant))
       setLoading(false);
     } catch (error) {
       console.log(error);

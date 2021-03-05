@@ -11,12 +11,9 @@ export const Header = () => {
 
     const { states, requests } = useContext(IfutureContext)
 
-    if(states.page === "login"){
-        
+    if(states.page == "login"){
         return (
-        <NavBar style={{boxShadow:'none'}}>
-
-        </NavBar>
+        <NavBar style={{borderBottom:'none'}}/>
         )
     } else if(states.page === "signup") {
         return (
@@ -66,20 +63,18 @@ export const Header = () => {
                 </Box>
             </>
             }
-           
         </NavBar>
         )
-    } else if(states.page === "home") {
-        return (
-        <NavBar>
-            <Back 
-                src={back} 
-                onClick={() => goToBack(history)}
-            />
-                      
-        </NavBar>
-        )
-    } else if(states.page === 'home/profile/edit/address') {
+    // } else if(states.page === "home") {
+    //     return (
+    //     <NavBar>
+    //         <Back 
+    //             src={back} 
+    //             onClick={() => goToBack(history)}
+    //         />
+    //     </NavBar>
+    //     )
+    } else if(states.page === 'profile/edit/address') {
         return (
         <NavBar>
             <Back 
@@ -87,11 +82,11 @@ export const Header = () => {
                 onClick={() => goToBack(history)}
             />
             <Box>
-                <Title>Entrar</Title>
+                <Title>Endereço</Title>
             </Box>   
         </NavBar>
         )
-    } else if(states.page === "home/profile/edit") {
+    } else if(states.page === "profile/edit") {
         return (
         <NavBar>
             <Back 
@@ -123,10 +118,8 @@ export const Header = () => {
                 <Title>Restaurante</Title>
             </Box>
         </NavBar>
-        )
-
-        
-    }else if(states.page === "cart") {
+        )  
+    } else if(states.page === "cart") {
         return (
         <NavBar>
             <Back 
@@ -138,7 +131,6 @@ export const Header = () => {
             </Box> 
         </NavBar>
         ) 
-    
         }else {
         return (
             <>

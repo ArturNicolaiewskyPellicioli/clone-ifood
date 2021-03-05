@@ -29,7 +29,7 @@ export const Footer = () => {
             />
             <IconFooter
                 src={avatar} 
-                onClick={() => goTo(history, "home/profile", "")}
+                onClick={() => goTo(history, "/profile", "")}
             />
         </NavBarFooter>
         )
@@ -46,7 +46,7 @@ export const Footer = () => {
             />
             <IconFooter
                 src={redAvatar} 
-                onClick={() => goTo(history, "home/profile", "")}
+                onClick={() => goTo(history, "/profile", "")}
             />
         </NavBarFooter>
         )
@@ -54,7 +54,7 @@ export const Footer = () => {
         return (
             <NavBarFooter>
             <IconFooter 
-                src={homepage} 
+                src={redHomepage} 
                 onClick={() => goTo(history, "/feed", "")}
             />
             <IconFooter
@@ -62,8 +62,8 @@ export const Footer = () => {
                 onClick={() => goTo(history, "/cart", "")}
             />
             <IconFooter
-                src={redAvatar} 
-                onClick={() => goTo(history, "home/profile", "")}
+                src={avatar} 
+                onClick={() => goTo(history, "/profile", "")}
             />
         </NavBarFooter>
         )
@@ -80,7 +80,7 @@ export const Footer = () => {
             />
             <IconFooter
                 src={avatar} 
-                onClick={() => goTo(history, "home/profile", "")}
+                onClick={() => goTo(history, "/profile", "")}
             />
         </NavBarFooter>
         )

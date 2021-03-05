@@ -32,16 +32,16 @@ const Router = () => {
                 <Route exact path="/address">
                     <AddAdress />
                 </Route>
-                <Route exact path="/home/profile">
+                <Route exact path="/profile">
                     <Profile />
                 </Route>
-                <Route exact path='/home/profile/edit'>
+                <Route exact path='/profile/edit'>
                     <EditProfile/>
                 </Route>
-                <Route exact path='/home/profile/edit/address'>
+                <Route exact path='/profile/edit/address'>
                     <EditAddress/>
                 </Route>
-                <Route exact path="/home">
+                <Route exact path="/subscribe">
                     <Home />
                 </Route>
                 <Route exact path="/feed">

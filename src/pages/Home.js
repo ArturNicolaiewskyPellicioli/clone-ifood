@@ -9,7 +9,7 @@ const Home =()=>{
     const { states, setters, requests } = useContext(IfutureContext)
 
     useEffect(() => {
-        setters.setPage("home")
+        setters.setPage("subscribe")
     }, [])
 
 
