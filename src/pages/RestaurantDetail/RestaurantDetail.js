@@ -30,6 +30,7 @@ const RestaurantDetail = () => {
     useEffect(() => {
         requests.getRestaurantDetail(pathParams.id)
         setters.setPage('/restaurant-detail')
+        window.scrollTo(0, 0)
     }, [])
 
     useEffect(() => {
@@ -41,11 +42,6 @@ const RestaurantDetail = () => {
     const toggleDropdown = (p) => {
         const findProduct = states.resDetail.products.findIndex(product => product === p)
         setSelectedProduct(findProduct)
-
-        // console.log("show");
-        // //se clicar no botão, modal aparece
-        // setDropdown("show");
-        // document.body.addEventListener("click", closeDropdown);
     }
 
     const closeDropdown = event => {
@@ -59,7 +55,6 @@ const RestaurantDetail = () => {
     };
 
     const showDetail = states.resDetail.products && states.resDetail.products.map((product) => {
-        // console.log(carrinho)
         return (
             <CardProduct key={product.id}>
                 <ImgProduct src={product.photoUrl} />

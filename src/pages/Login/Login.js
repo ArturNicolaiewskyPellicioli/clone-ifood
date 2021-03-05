@@ -8,7 +8,6 @@ import { baseURL } from '../../parameters';
 import { goTo } from '../../routes/Coordinator';
 import Logo from '../../components/Logo'
 import {Container, BoxTitle, Title, Button, Subscribe} from './styled'
-import useUnProtectedPage from '../../hooks/useUnProtectedPage'
 
 
 const Login = (props) => {
@@ -27,18 +26,12 @@ const Login = (props) => {
         event.preventDefault()
         try {
             const response = await axios.post(`${baseURL}/login`, form)
-            console.log(response.data.token)
             localStorage.setItem("token", response.data.token)
             localStorage.setItem("carrinho", "[]")
-
-            if ("token" === ''){
-            goTo(history, "/home", "")
+            
+            goTo(history, "/feed", "")
             clear()
-            }
-            else {
-                setTimeout(goTo(history, "/feed" ,"", 300))
-            //    goTo(history, "/feed","")
-            }
+
         } catch (error) {
             console.log(error)
             alert('Primeira vez aqui? Faça seu cadastro!')

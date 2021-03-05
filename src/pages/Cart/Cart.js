@@ -1,16 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import IfutureContext from "../../Context/IfutureContext";
-
-import styled from "styled-components";
-
-import { ButtonRemoveToCart } from "../RestaurantDetail/styled";
-
-import {
-  Address,
-  AddressContainer,
-  AddressTitle,
-  ButtonConfirm,
-  CardProduct,
+import { ButtonRemoveToCart, Container } from "../RestaurantDetail/styled";
+import {CardProduct, CardRestaurant, ContainerInfoProduct, ImgProduct, RedText} from "../RestaurantDetail/styled"
+import {Button} from "../Login/styled"
+import {Address,
   CartContainer,
   CartWrapper,
   EmptyCart,
@@ -21,20 +14,15 @@ import {
   Shipping,
   Subtotal,
   GrayText,
-  ButtonAddCart,
   ButtonQuantity
 } from "./styled";
-import Home from "../Home";
-import { goTo } from "../../routes/Coordinator";
-import { CardRestaurant, ContainerInfoProduct, ImgProduct, RedText } from "../RestaurantDetail/styled";
+import { BoxAddress, AddressTitle} from "../Profile/Address/Address_styled";
 
 export const Cart = () => {
   const { states, setters, requests } = useContext(IfutureContext);
   const { getFullAddress, getRestaurantDetail, createOrder } = requests;
   const { address, cart, id, resDetail } = states;
-
   const [carrinho, setCarrinho] = useState("");
-
   const [payment, setPayment] = useState(null);
   const [confirmButtonStats , setConfirmButtonStats] = useState('disabled')
   let restaurantDetails = JSON.parse(localStorage.getItem("restaurantDetails"))
@@ -42,14 +30,10 @@ export const Cart = () => {
   let newCart = []
   // console.log(restaurantDetails)
 
-  // const {shipping} = resDetail
-  //Nome
-  // Endereço
-  //Delivery time
-
   useEffect(() => {
     getFullAddress();
     setters.setPage('cart')
+    window.scrollTo(0, 0)
   }, []);
 
   useEffect(() => {
@@ -64,12 +48,12 @@ export const Cart = () => {
 
   const getAddress = (address) => {
     return (
-      <AddressContainer>
+      <BoxAddress>
         <AddressTitle>Endereço de Entrega</AddressTitle>
         <Address>
-          {address.street}, {address.number}
+          Rua {address.street}, {address.number}
         </Address>
-      </AddressContainer>
+      </BoxAddress>
     );
   };
 
@@ -212,10 +196,11 @@ export const Cart = () => {
     );
   };
 
-  return (
-
-    <CartContainer>
   
+
+  return (
+    <Container>
+    <CartContainer>
       {address && getAddress(address)}
       {/* {restaurantDetails && restaurantInfo(resDetail)} */}
 
@@ -224,9 +209,11 @@ export const Cart = () => {
 
       {paymentMethod()}
 
-      <ButtonConfirm disabled={confirmButtonStats} onClick={() => createOrder(payment)}>Confirmar</ButtonConfirm>
-    </CartContainer>
 
+      <Button disabled={confirmButtonStats} onClick={() => createOrder(payment)}>Confirmar</Button>
+
+    </CartContainer>
+    </Container>
 
   );
 };

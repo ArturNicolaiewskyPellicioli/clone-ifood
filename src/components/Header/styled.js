@@ -10,7 +10,7 @@ export const NavBar = styled.div `
   backdrop-filter: blur(10px);
   box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
   background-color: #ffffff;
-  margin-bottom: 10px;
+
   border-bottom: 1px solid #d8d8d8;
 `
 export const Box = styled.div `

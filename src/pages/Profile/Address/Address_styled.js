@@ -1,43 +1,26 @@
 
 import styled from 'styled-components';
 
-
-
-
-
 export const BoxAddress = styled.div`
-width:100%;
-    background-color: #eeeeee;
-    display: grid;
-    font-family: Roboto;
-
+  width:100vw;
+  background-color: #eeeeee;
+  display: grid;
+  font-family: Roboto;
 `
 
-export const Label = styled.label`
+export const AddressTitle = styled.p`
     display: inline-block;
     width:100%;
     grid-area:"Label";
     color: #b8b8b8;
-    font-family: Roboto;
+    font-weight: none;
     margin: 3vh;
-    margin-bottom:1vh;
-
-    /* background-color: pink; */
-
-    /* grid-row-start: 1;
-    grid-row-end:2; */
-    
+    margin-bottom:2vh;
 `
 
 export const Info = styled.div`
 grid-area:"Info";
 font-family: Roboto;
-    /* background-color:green; */
-    /* grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 2;
-    grid-row-end:2;
-    */
 `
 export const Img = styled.img`
   background-color: #eeeeee;
