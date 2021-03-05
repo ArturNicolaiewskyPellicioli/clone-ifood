@@ -124,10 +124,7 @@ const IfutureProvider = (props) => {
       console.log(error);
     }
   };
-
-    console.log("cart", cart);
-  };
-
+  
   const states = {
     profile,
     address,

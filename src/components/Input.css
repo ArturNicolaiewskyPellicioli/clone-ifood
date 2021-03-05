@@ -33,14 +33,16 @@
   }
   
   .label-float input::placeholder{
-    color:transparent;
+    /* margin: 30px;
+    padding: 100px; */
   }
   
   .label-float label{
-    width: 4.875rem;
-    height: 0.9rem;
     font-family: Roboto;
-    font-size: 0.75rem;
+    font-size: 12px;
+    top: 100%;
+    padding: 1px;
+    background-color:white;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -49,13 +51,11 @@
     color: #b8b8b8;
     pointer-events: none;
     position: absolute;
-    top: calc(50% - 8px);
+    top: calc(20% - 7px);
     left: 15px;
     transition: all .1s linear;
     -webkit-transition: all .1s linear;
     -moz-transition: all .1s linear;
-    background-color:white;
-    padding: 5px;
     box-sizing: border-box;
   }
   
