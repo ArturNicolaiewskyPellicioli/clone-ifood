@@ -6,7 +6,5 @@
 }
 .App {
   text-align: center;
+  position: relative;
 }
-/* .show{
-  display: block !important;
-} */

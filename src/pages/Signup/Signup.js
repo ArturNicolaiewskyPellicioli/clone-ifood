@@ -37,8 +37,8 @@ const Signup = ()=>{
         if(form.password === form2.confirmPassword){
             try {
                 const response = await axios.post(`${baseURL}/signup`,form)
-                goTo(history, "/login", "")
-                console.log(response)
+                localStorage.setItem('token',response.data.token)
+                goTo(history, "/address", "")
             } catch (error) {
                 console.log(error)
                 alert("Este email ou este CPF ja estão cadastrados")

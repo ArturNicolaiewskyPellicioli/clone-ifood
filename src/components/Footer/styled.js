@@ -11,6 +11,8 @@ export const NavBarFooter = styled.div `
   box-shadow: 0 0 1px 0.5px rgba(0, 0, 0, 0.25);
   background-color: #ffffff;
   transition: 0.2s;
+  position: sticky;
+  bottom: 0;
 `
 
 export const IconFooter = styled.img `

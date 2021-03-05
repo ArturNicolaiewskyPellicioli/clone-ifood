@@ -49,9 +49,10 @@ const IfutureProvider = (props) => {
     }
   };
 
-  const getActiveOrder = async () => {
+  const getActiveOrder = async (token) => {
     try {
-      const response = await axios.get(`${baseURL}/active-order`, { headers });
+      const response = await axios.get(`${baseURL}/active-order`, { headers: {auth: token} });
+      console.log(response.data)
       setActiveOrder(response.data.order);
     } catch (error) {
       console.log(error);
