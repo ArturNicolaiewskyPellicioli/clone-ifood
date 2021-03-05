@@ -24,7 +24,7 @@ const Profile = () => {
                 <LabelsProfile>{states.profile.email}</LabelsProfile>
                 <LabelsProfile>{states.profile.cpf}</LabelsProfile>
                 
-                <Button onClick={() => goTo(history, "profile/edit", "")}><Img src={require('../../Images/editsymbol.png')}/></Button>
+                <Button onClick={() => goTo(history, "profile/edit", "")}><Img src={require('../../Icons/PNG/editsymbol.png')}/></Button>
             </UserBox>
                        
             <Address />
