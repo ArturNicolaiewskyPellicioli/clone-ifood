@@ -9,24 +9,30 @@ import { BoxCard, SubTotal, OrderDate, RestaurantName } from './OrderHistory_Sty
 
 const OrderHistory = () => {
     const { states, setters, requests } = useContext(IfutureContext)
-   
+
     useEffect(() => {
 
         requests.getOrdersHistory()
 
     }, [])
-   
+
     if (states.orderHistory) {
 
 
-       
+
         return (
             states.orderHistory && states.orderHistory.map((order) => {
+                // const unixTimestamp =  
+                // let dateObj = new Date(unixTimestamp * 1000);
+                // let utcString = dateObj.toUTCString();
+                // console.log()
+                //order.createdAt
+                let time = requests.timeInHumanDate(order.createdAt)
                 return (
                     <div>
                         <BoxCard>
                             <RestaurantName>{order.restaurantName}</RestaurantName>
-                            <OrderDate>{order.createdAt}</OrderDate>
+                            <OrderDate>{time}</OrderDate>
                             <SubTotal>{`Subtotal R$${order.totalPrice}`}</SubTotal>
                         </BoxCard>
                     </div>

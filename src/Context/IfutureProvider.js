@@ -40,9 +40,9 @@ const IfutureProvider = (props) => {
 
   const getOrdersHistory = async (event) => {
     try {
-      const response = await axios.get(`${baseURL}/orders/history`, {headers});
-      console.log("OrdersHistory",response)
-      console.log(typeof(response.data))
+      const response = await axios.get(`${baseURL}/orders/history`, { headers });
+      console.log("OrdersHistory", response)
+      console.log(typeof (response.data))
       setOrderHistory(response.data.orders);
     } catch (error) {
       console.log(error);
@@ -127,6 +127,18 @@ const IfutureProvider = (props) => {
 
 
 
+
+  const timeInHumanDate = (time) => {
+
+
+    let dateObj = new Date(time * 1000);
+    let utcString = dateObj.toUTCString();
+    let data = utcString.slice(0, 11) + " " + utcString.slice(18, 23) + " GMT"
+    console.log(data)
+
+    return (data)
+  }
+
   const states = {
     profile,
     address,
@@ -160,8 +172,11 @@ const IfutureProvider = (props) => {
     getRestaurantDetail,
     addProduto,
     feedPage,
+    timeInHumanDate,
     createOrder,
   };
+
+
   const data = { states, setters, requests };
 
   return (
