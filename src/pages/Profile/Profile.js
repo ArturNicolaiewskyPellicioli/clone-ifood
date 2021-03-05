@@ -13,7 +13,11 @@ const Profile = () => {
     const { states, setters, requests } = useContext(IfutureContext)
     const history = useHistory()
     useEffect(() => {
-        requests.getProfile()
+        const token = localStorage.getItem('token')
+        if(token){
+
+            requests.getProfile(token)
+        }
     }, [states.profile])
 
     return (
@@ -24,7 +28,7 @@ const Profile = () => {
                 <LabelsProfile>{states.profile.cpf}</LabelsProfile>
 
                 <Button onClick={() => goTo(history, "profile/edit", "")}>
-                <Img src={require('../../Images/editsymbol.png')}/></Button>
+                <Img src={require('../../Icons/PNG/editsymbol.png')}/></Button>
 
             </UserBox>
             <Address />

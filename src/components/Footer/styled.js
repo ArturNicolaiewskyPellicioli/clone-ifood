@@ -13,6 +13,7 @@ export const NavBarFooter = styled.div `
   transition: 0.2s;
   position: sticky;
   bottom: 0;
+  z-index:2000;
 `
 
 export const IconFooter = styled.img `

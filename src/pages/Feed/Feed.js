@@ -35,7 +35,7 @@ const Feed = () => {
     if (token) {
       getRestaurants(token);
 
-      requests.getActiveOrder(token);
+      requests.getActiveOrder(token)  && requests.getActiveOrder(token);
     }
   }, [headers]);
 
@@ -126,44 +126,44 @@ const Feed = () => {
         goTo(history, "/restaurant-detail", `/${id}`)
 
     }
-  };
+  
 
-  const filterListButton = () => {
-    if (restaurantsList && restaurantsList.length > 0) {
-      if (currentCategory !== null) {
-        const listCategory = restaurantsList.filter((rest) =>
-          rest.category.toLowerCase().includes(currentCategory.toLowerCase())
-        );
-        setListCategoryState(listCategory);
-        setFilteredRestaurantsList(listCategory);
-      } else {
-        setListCategoryState(restaurantsList);
-        setFilteredRestaurantsList(restaurantsList);
-      }
-    }
-  };
+  // const filterListButton = () => {
+  //   if (restaurantsList && restaurantsList.length > 0) {
+  //     if (currentCategory !== null) {
+  //       const listCategory = restaurantsList.filter((rest) =>
+  //         rest.category.toLowerCase().includes(currentCategory.toLowerCase())
+  //       );
+  //       setListCategoryState(listCategory);
+  //       setFilteredRestaurantsList(listCategory);
+  //     } else {
+  //       setListCategoryState(restaurantsList);
+  //       setFilteredRestaurantsList(restaurantsList);
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    // setters.setPage("feed")
-    // console.log(headers)
-    // getRestaurants()
-  }, [headers]);
+  // useEffect(() => {
+  //   // setters.setPage("feed")
+  //   // console.log(headers)
+  //   // getRestaurants()
+  // }, [headers]);
 
-  useEffect(() => {
-    clear();
-  }, [states.searchPage]);
+  // useEffect(() => {
+  //   clear();
+  // }, [states.searchPage]);
 
-  useEffect(() => {
-    filterListInput();
-  }, [form]);
+  // useEffect(() => {
+  //   filterListInput();
+  // }, [form]);
 
-  useEffect(() => {
-    filterListButton();
-  }, [currentCategory]);
+  // useEffect(() => {
+  //   filterListButton();
+  // }, [currentCategory]);
 
-  const goToDetails = (id) => {
-    goTo(history, "/restaurant-detail", `/${id}`);
-  };
+  // const goToDetails = (id) => {
+  //   goTo(history, "/restaurant-detail", `/${id}`);
+  // };
 
   const onSearchPage = () => {
     setters.setSearchPage(true);

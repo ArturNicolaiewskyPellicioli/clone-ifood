@@ -20,6 +20,11 @@ const Login = (props) => {
 
     useEffect(() => {
         setters.setPage("login")
+        localStorage.removeItem('token')
+        localStorage.removeItem('carrinho')
+        localStorage.removeItem('restaurantDetails')
+        
+
     }, [])
     
     const login = async (event) => {
