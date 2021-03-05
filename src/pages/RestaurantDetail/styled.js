@@ -11,6 +11,8 @@ export const Container = styled.div`
     padding-top: 0px;
     margin-top:0;
     box-sizing:border-box;
+    margin-left: 10px;
+    margin-right: 10px;
 `
 // CardRestaurant
 export const CardRestaurant = styled.div`

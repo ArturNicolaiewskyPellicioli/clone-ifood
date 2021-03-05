@@ -12,7 +12,13 @@ const OrderHistory = () => {
 
     useEffect(() => {
 
-        requests.getOrdersHistory()
+        const token = localStorage.getItem('token')
+
+        if(token){
+            requests.getOrdersHistory(token)
+            
+        }
+
 
     }, [])
 
@@ -29,13 +35,13 @@ const OrderHistory = () => {
                 //order.createdAt
                 let time = requests.timeInHumanDate(order.createdAt)
                 return (
-                    <div>
+                  
                         <BoxCard>
                             <RestaurantName>{order.restaurantName}</RestaurantName>
                             <OrderDate>{time}</OrderDate>
                             <SubTotal>{`Subtotal R$${order.totalPrice}`}</SubTotal>
                         </BoxCard>
-                    </div>
+                   
                 )
 
             })

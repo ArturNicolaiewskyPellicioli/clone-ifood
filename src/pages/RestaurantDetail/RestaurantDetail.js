@@ -8,6 +8,7 @@ import { Container, CardRestaurant, ImgRestaurant, RedText, GrayText, Title, Spa
 import Loader from '../../components/Loader'
 import useModal from "../../components/Modal2/index2"
 import ModalBox from "../../components/Modal2"
+import OrderModal from "../../components/OrderModal"
 
 const modalStyle = {
     backgroundColor: '#fff',
@@ -31,6 +32,12 @@ const RestaurantDetail = () => {
         requests.getRestaurantDetail(pathParams.id)
         setters.setPage('/restaurant-detail')
         window.scrollTo(0, 0)
+        const token = localStorage.getItem("token");
+        if (token) {
+            
+      
+            requests.getActiveOrder(token);
+          }
     }, [])
 
     useEffect(() => {
@@ -92,12 +99,14 @@ const RestaurantDetail = () => {
     return ( 
         <>
         {states.isLoading ? <Loader/> : 
-        
+        <>
+        <OrderModal />
         <Container>
              {showRestaurant()}
              <Title><b>Produtos</b></Title>
              {showDetail}
         </Container>
+        </>
         }
         </> 
     )

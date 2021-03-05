@@ -4,8 +4,10 @@ export const OrderContainer = styled.div`
     background-color: #e8222e;
     position: sticky;
     /* bottom: 0; */
+    width: 100vw;
+    /* height: 10vh; */
     top: 71.5%;
-    z-index: 1000;
+    z-index: 2000;
     padding:1.5rem;
     text-align: left;
     display: flex;

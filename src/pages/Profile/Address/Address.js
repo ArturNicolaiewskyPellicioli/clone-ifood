@@ -10,7 +10,11 @@ const Address = () => {
     const history = useHistory()
 
     useEffect(() => {
-        requests.getFullAddress()
+        const token = localStorage.getItem('token')
+        if(token){
+
+            requests.getFullAddress(token)
+        }
     }, [])
 
     if (states.address) {

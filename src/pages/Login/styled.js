@@ -48,6 +48,9 @@ export const Button = styled.button `
     letter-spacing: -0.39px;
     text-align: center;
     color: var(--black);
+    &:disabled{
+    background-color: #e8222e38
+  }
 `
 
 export const Subscribe = styled.button `

@@ -32,14 +32,17 @@ export const LabelOrder = styled.label`
   margin-top: 3vh;
   margin-bottom:3vh;
   text-align:center;
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-column-end: 2;
   font-family: Roboto;
   width:100%;
-  border-bottom: solid black 2px;
+  /* border-bottom: solid black 1px; */
 `
 
 export const MiniGrid = styled.div`
-  display:grid;
-  grid-template-columns: 1fr 30fr 1fr;
+  /* display:grid; */
+  border-bottom: 1px solid black;
+    width: 100%;
+  margin: 1rem 0;
+  grid-template-columns: 1fr 1fr 1fr;
 `

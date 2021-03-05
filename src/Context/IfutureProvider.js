@@ -18,28 +18,27 @@ const IfutureProvider = (props) => {
   const [isLoading, setLoading] = useState(false);
   const [order, setOrder] = useState(false);
 
-  const history = useHistory()
+  const history = useHistory();
 
-
-  const getProfile = async (event) => {
+  const getProfile = async (token) => {
     try {
-      const response = await axios.get(`${baseURL}/profile`, { headers });
+      const response = await axios.get(`${baseURL}/profile`, {
+        headers: { auth: token },
+      });
       setProfile(response.data.user);
-      console.log(response.data)
 
-      if (response.data.user.hasAddress === false){ 
-        console.log(response.data.user.hasAddress)
-        goTo(history, "/address","")
+      if (response.data.user.hasAddress === false) {
+        goTo(history, "/address", "");
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getFullAddress = async (event) => {
+  const getFullAddress = async (token) => {
     try {
       const response = await axios.get(`${baseURL}/profile/address`, {
-        headers,
+        headers: { auth: token },
       });
       // console.log(response)
       setAddress(response.data.address);
@@ -48,11 +47,13 @@ const IfutureProvider = (props) => {
     }
   };
 
-  const getOrdersHistory = async (event) => {
+  const getOrdersHistory = async (token) => {
     try {
-      const response = await axios.get(`${baseURL}/orders/history`, { headers });
-      console.log("OrdersHistory", response)
-      console.log(typeof (response.data))
+      const response = await axios.get(`${baseURL}/orders/history`, {
+        headers: { auth: token },
+      });
+      console.log("OrdersHistory", response);
+      console.log(typeof response.data);
       setOrderHistory(response.data.orders);
     } catch (error) {
       console.log(error);
@@ -61,8 +62,10 @@ const IfutureProvider = (props) => {
 
   const getActiveOrder = async (token) => {
     try {
-      const response = await axios.get(`${baseURL}/active-order`, { headers: {auth: token} });
-      console.log(response.data)
+      const response = await axios.get(`${baseURL}/active-order`, {
+        headers: { auth: token },
+      });
+      console.log(response.data);
       setActiveOrder(response.data.order);
     } catch (error) {
       console.log(error);
@@ -78,7 +81,10 @@ const IfutureProvider = (props) => {
       });
       setResDetail(response.data.restaurant);
       console.log(response.data.restaurant);
-      localStorage.setItem("restaurantDetails", JSON.stringify(response.data.restaurant))
+      localStorage.setItem(
+        "restaurantDetails",
+        JSON.stringify(response.data.restaurant)
+      );
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -99,21 +105,20 @@ const IfutureProvider = (props) => {
       image: product.photoUrl,
       description: product.description,
       quantity: Number(quantity),
-      visible:true
+      visible: true,
     };
     const novaLista = [...JSON.parse(localStorage.getItem("carrinho"))];
     novaLista.push(produtos);
     console.log("c", novaLista);
     setId(id);
-    localStorage.setItem("carrinho",JSON.stringify(novaLista));
+    localStorage.setItem("carrinho", JSON.stringify(novaLista));
     setCart(novaLista);
-
   };
 
   const createOrder = async (payment) => {
     const products =
-      cart &&
-      cart.map((order) => {
+      JSON.parse(localStorage.getItem("carrinho")) &&
+      JSON.parse(localStorage.getItem("carrinho")).map((order) => {
         return {
           id: order.id,
           quantity: Number(order.quantity),
@@ -121,10 +126,11 @@ const IfutureProvider = (props) => {
       });
 
     const body = {
-      products,
+      products: products,
       paymentMethod: payment,
     };
-    console.log(body);
+
+    console.log("body", body);
 
     try {
       await axios.post(`${baseURL}/restaurants/${resDetail.id}/order`, body, {
@@ -137,20 +143,14 @@ const IfutureProvider = (props) => {
     }
   };
 
-
-
-
-
   const timeInHumanDate = (time) => {
-
-
     let dateObj = new Date(time * 1000);
     let utcString = dateObj.toUTCString();
-    let data = utcString.slice(0, 11) + " " + utcString.slice(18, 23) + " GMT"
-    console.log(data)
+    let data = utcString.slice(0, 11) + " " + utcString.slice(18, 23) + " GMT";
+    console.log(data);
 
-    return (data)
-  }
+    return data;
+  };
 
   const states = {
     profile,
@@ -163,7 +163,6 @@ const IfutureProvider = (props) => {
     searchPage,
     id,
     isLoading,
-
   };
 
   const setters = {
@@ -188,7 +187,6 @@ const IfutureProvider = (props) => {
     timeInHumanDate,
     createOrder,
   };
-
 
   const data = { states, setters, requests };
 

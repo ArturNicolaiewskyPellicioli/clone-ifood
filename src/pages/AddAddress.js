@@ -16,7 +16,7 @@ const AddAdress = () =>{
     const history = useHistory()
 
     const {  setters } = useContext(IfutureContext)
-    const history = useHistory()
+    // const history = useHistory()
 
     useEffect(() => {
         setters.setPage("address")
