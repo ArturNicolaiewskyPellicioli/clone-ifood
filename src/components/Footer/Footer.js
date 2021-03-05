@@ -50,7 +50,24 @@ export const Footer = () => {
             />
         </NavBarFooter>
         )
-    } else if(states.page === "cart") {
+    } else if(states.page === "/restaurant-detail") {
+        return (
+            <NavBarFooter>
+            <IconFooter 
+                src={homepage} 
+                onClick={() => goTo(history, "/feed", "")}
+            />
+            <IconFooter
+                src={cart} 
+                onClick={() => goTo(history, "/cart", "")}
+            />
+            <IconFooter
+                src={redAvatar} 
+                onClick={() => goTo(history, "home/profile", "")}
+            />
+        </NavBarFooter>
+        )
+    } else if(states.page === "/cart") {
         return (
         <NavBarFooter>
             <IconFooter 
