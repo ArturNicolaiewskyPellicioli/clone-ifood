@@ -18,7 +18,13 @@ const Feed = () => {
 
     useEffect(() => {
         setters.setPage("feed")
-    }, [])
+        console.log(localStorage.getItem('token'))
+        const token = localStorage.getItem('token')
+        if(token){
+            getRestaurants(token)
+
+        }
+    },[headers])
 
     const [form, onChange, clear] = useForm({ name: "" })
     const [restaurantsList, setRestaurantsList] = useState()
@@ -29,11 +35,11 @@ const Feed = () => {
 
     const history = useHistory()
     
-    const getRestaurants =  () => {
+    async function getRestaurants(token){
         
-        const headers1 = {auth:localStorage.getItem("token")}  
-        console.log("çlksdjfalksdhjf",headers1.auth)
-        axios.get(`${baseURL}/restaurants`, { headers })
+        // const headers1 = {auth:localStorage.getItem("token")}  
+        // console.log("çlksdjfalksdhjf",headers1.auth)
+        await axios.get(`${baseURL}/restaurants`,{headers:{auth: token}} )
         .then((response)=>setRestaurantsList(response.data.restaurants))
         .catch(()=>console.log("deu ruim"))
         // setRestaurantsList(response.data.restaurants)
@@ -85,9 +91,11 @@ const getHeader=()=>{
             }
     }}
 
-    useLayoutEffect(() => {
-        getRestaurants()
-    },[])
+    useEffect(() => {
+        // setters.setPage("feed")
+        // console.log(headers)
+        // getRestaurants()
+    },[headers])
 
     useEffect(() => {
         clear()
