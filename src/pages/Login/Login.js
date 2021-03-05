@@ -25,7 +25,7 @@ const Login = (props) => {
         localStorage.removeItem('restaurantDetails')
         
 
-    }, [])
+    }, [setters])
     
     const login = async (event) => {
         event.preventDefault()

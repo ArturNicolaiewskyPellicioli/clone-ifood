@@ -17,7 +17,7 @@ const FourFood = styled.img `
 
 export const Logo = () => {
 
-    const { states, setters, requests } = useContext(IfutureContext)
+    const { states } = useContext(IfutureContext)
 
     if (states.page === ""){
         

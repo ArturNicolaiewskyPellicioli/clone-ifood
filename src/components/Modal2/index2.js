@@ -1,5 +1,5 @@
-// import disableScroll from 'disable-scroll';
-import React, { useCallback, useState, useMemo } from 'react';
+
+import React, { useCallback, useState, } from 'react';
 import { createPortal } from 'react-dom';
 
 
@@ -48,15 +48,11 @@ const useModal = (elementId = 'root', options = {}) => {
   const [isOpen, setOpen] = useState(false);
   const open = useCallback(() => {
     setOpen(true);
-    // if (preventScroll) {
-    //   disableScroll.on();
-    // }
+
   }, [setOpen, preventScroll]);
   const close = useCallback(() => {
     setOpen(false);
-    // if (preventScroll) {
-    //   disableScroll.off();
-    // }
+
   }, [setOpen, preventScroll]);
 
   const ModalWrapper = useCallback(({ children }) => {

@@ -9,6 +9,7 @@ import Loader from '../../components/Loader'
 import useModal from "../../components/Modal2/index2"
 import ModalBox from "../../components/Modal2"
 import OrderModal from "../../components/OrderModal"
+import useProtectedPage from "../../hooks/useProtectedPage"
 
 const modalStyle = {
     backgroundColor: '#fff',
@@ -28,14 +29,16 @@ const RestaurantDetail = () => {
 
     const history = useHistory()
 
+    useProtectedPage()
+
     useEffect(() => {
-        requests.getRestaurantDetail(pathParams.id)
         setters.setPage('/restaurant-detail')
         window.scrollTo(0, 0)
         const token = localStorage.getItem("token");
         if (token) {
             
-      
+            requests.getRestaurantDetail(token, pathParams.id)
+            
             requests.getActiveOrder(token);
           }
     }, [])
@@ -53,7 +56,7 @@ const RestaurantDetail = () => {
 
     const closeDropdown = event => {
         const contain = modalRef.current.contains(event.target);
-        if (!contain) { //se clicar fora do modal, ele Desaparece
+        if (!contain) { 
             console.log("hidden");
             setDropdown("");
             

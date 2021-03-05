@@ -7,6 +7,7 @@ import { goTo } from "../../../routes/Coordinator"
 import useForm from "../../../hooks/useForm"
 import {Container, Button, Box} from '../../Login/styled'
 import Input from '../../../components/Input';
+import useProtectedPage from "../../../hooks/useProtectedPage"
 
 
 
@@ -14,14 +15,15 @@ const EditAddress = () => {
     const { states, setters, requests } = useContext(IfutureContext)
     const [form, onChange] = useForm({ street: "", number:"",neighbourhood:"", city:"", state:"", complement:""})
     const history = useHistory()
+    useProtectedPage()
 
     
     const editAddress = async (event) => {
         event.preventDefault()
         try{
-            console.log()
+            
             const response = await axios.put(`${baseURL}/address`,form,{headers})
-            console.log(response)
+          
             alert("Success")
             goTo(history, "/home/profile", "")
         } catch(error) {
@@ -37,11 +39,11 @@ const EditAddress = () => {
     return(
         <Container>
             <form onSubmit={editAddress}>
-            <Input label="Street" type="text" pattern='[a-zA-Z]+' name="street" {...form.street} onChange={onChange}/>
+            <Input label="Street" type="text"  name="street" {...form.street} onChange={onChange}/>
             <Input label="number" type="number" name="number" {...form.number} onChange={onChange}/>
-            <Input label="neighbourhood" type="text" pattern='[a-zA-Z]+' name="neighbourhood" {...form.neighbourhood} onChange={onChange}/>
-            <Input label="city" type="text" pattern='[a-zA-Z]+' name="city" {...form.city} onChange={onChange}/>
-            <Input label="state" type="text" pattern='[a-zA-Z]+' name="state" {...form.state} onChange={onChange}/>
+            <Input label="neighbourhood" type="text"  name="neighbourhood" {...form.neighbourhood} onChange={onChange}/>
+            <Input label="city" type="text"  name="city" {...form.city} onChange={onChange}/>
+            <Input label="state" type="text"  name="state" {...form.state} onChange={onChange}/>
             <Input label="complement" type="text" name="complement" {...form.complement} onChange={onChange}/>                <Button>Criar</Button>
             </form>
         </Container>

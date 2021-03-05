@@ -17,9 +17,9 @@ const EditProfile = () => {
     const editProfile = async (event, token) => {
         event.preventDefault()
         try {
-            console.log()
+            
             const response = await axios.put(`${baseURL}/profile`,form,{headers: {auth: token} })
-            console.log(response)
+            
             alert("Success")
             goTo(history, "/profile/edit", "")
         } catch(error) {

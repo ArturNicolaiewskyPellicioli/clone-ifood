@@ -10,7 +10,7 @@ import {LabelsProfile, UserBox, LabelOrder, MiniGrid } from './Profile_Styled'
 
 const Profile = () => {
     
-    const { states, setters, requests } = useContext(IfutureContext)
+    const { states, requests } = useContext(IfutureContext)
     const history = useHistory()
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -18,7 +18,7 @@ const Profile = () => {
 
             requests.getProfile(token)
         }
-    }, [states.profile])
+    }, [states.profile, requests])
 
     return (
         <Container>

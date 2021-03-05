@@ -7,7 +7,6 @@ const useForm = (initialState) => {
 
     const { value, name } = event.target;
     setForm({ ...form, [name]: value });
-    // setForm({ value });
   };
 
   const clearFields = () => {

@@ -2,9 +2,6 @@ import React, { useEffect, useContext } from "react"
 import IfutureContext from '../../../Context/IfutureContext'
 import { BoxCard, SubTotal, OrderDate, RestaurantName } from './OrderHistory_Styled'
 
-//ATENCAO
-//ARRUMAR DEPOIS DE FAZER OS PEDIDOS DE COMIDO DO COISO COISADO!
-//ATENCAO
 
 
 const OrderHistory = () => {
@@ -28,11 +25,7 @@ const OrderHistory = () => {
 
         return (
             states.orderHistory && states.orderHistory.map((order) => {
-                // const unixTimestamp =  
-                // let dateObj = new Date(unixTimestamp * 1000);
-                // let utcString = dateObj.toUTCString();
-                // console.log()
-                //order.createdAt
+         
                 let time = requests.timeInHumanDate(order.createdAt)
                 return (
                   

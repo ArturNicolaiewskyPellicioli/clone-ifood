@@ -6,7 +6,7 @@ import { ReactComponent as Clock } from "../Icons/SVG/clock.svg";
 function OrderModal() {
   const { states, setters, requests } = useContext(IfutureContext);
   const { activeOrder } = states;
-  console.log(activeOrder);
+  
   if (activeOrder !== null) {
     return (
       <OrderContainer>
