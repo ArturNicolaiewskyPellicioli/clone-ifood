@@ -40,7 +40,7 @@ const IfutureProvider = (props) => {
       const response = await axios.get(`${baseURL}/profile/address`, {
         headers: { auth: token },
       });
-      // console.log(response)
+    
       setAddress(response.data.address);
     } catch (error) {
       console.log(error);
@@ -52,8 +52,8 @@ const IfutureProvider = (props) => {
       const response = await axios.get(`${baseURL}/orders/history`, {
         headers: { auth: token },
       });
-      console.log("OrdersHistory", response);
-      console.log(typeof response.data);
+    
+    
       setOrderHistory(response.data.orders);
     } catch (error) {
       console.log(error);
@@ -65,22 +65,22 @@ const IfutureProvider = (props) => {
       const response = await axios.get(`${baseURL}/active-order`, {
         headers: { auth: token },
       });
-      console.log(response.data);
+    
       setActiveOrder(response.data.order);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getRestaurantDetail = async (id) => {
+  const getRestaurantDetail = async (token, id) => {
     try {
       setLoading(true);
-      // const response = await axios.get(`${baseURL}/restaurants/${pathParams}`, { headers })
+    
       const response = await axios.get(`${baseURL}/restaurants/${id}`, {
-        headers,
+        headers: { auth: token },
       });
       setResDetail(response.data.restaurant);
-      console.log(response.data.restaurant);
+     
       localStorage.setItem(
         "restaurantDetails",
         JSON.stringify(response.data.restaurant)
@@ -96,8 +96,7 @@ const IfutureProvider = (props) => {
   };
 
   const addProduto = (product, quantity, id) => {
-    console.log("p", product);
-    console.log("q", quantity);
+
     const produtos = {
       id: product.id,
       product: product.name,
@@ -109,13 +108,13 @@ const IfutureProvider = (props) => {
     };
     const novaLista = [...JSON.parse(localStorage.getItem("carrinho"))];
     novaLista.push(produtos);
-    console.log("c", novaLista);
+   
     setId(id);
     localStorage.setItem("carrinho", JSON.stringify(novaLista));
     setCart(novaLista);
   };
 
-  const createOrder = async (payment) => {
+  const createOrder = async (payment, token) => {
     const products =
       JSON.parse(localStorage.getItem("carrinho")) &&
       JSON.parse(localStorage.getItem("carrinho")).map((order) => {
@@ -130,11 +129,11 @@ const IfutureProvider = (props) => {
       paymentMethod: payment,
     };
 
-    console.log("body", body);
+   
 
     try {
       await axios.post(`${baseURL}/restaurants/${resDetail.id}/order`, body, {
-        headers,
+        headers: { auth: token },
       });
 
       setOrder(true);
@@ -147,7 +146,7 @@ const IfutureProvider = (props) => {
     let dateObj = new Date(time * 1000);
     let utcString = dateObj.toUTCString();
     let data = utcString.slice(0, 11) + " " + utcString.slice(18, 23) + " GMT";
-    console.log(data);
+  
 
     return data;
   };

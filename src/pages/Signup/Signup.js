@@ -15,7 +15,7 @@ import openedEye from '../../Icons/SVG/senha-2.svg'
 
 const Signup = ()=>{
     
-    // useUnProtectedPage()
+   
     const history = useHistory()
     
     const {  setters } = useContext(IfutureContext)

@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import IfutureContext from '../../../Context/IfutureContext'
+import useProtectedPage from "../../../hooks/useProtectedPage"
 import { goTo } from "../../../routes/Coordinator"
 import { GrayText } from "../../RestaurantDetail/styled"
 import { Button, Img, BoxAddress, AddressTitle, Info, MiniBlock } from './Address_styled'
@@ -8,6 +9,7 @@ import { Button, Img, BoxAddress, AddressTitle, Info, MiniBlock } from './Addres
 const Address = () => {
     const { states, setters, requests } = useContext(IfutureContext)
     const history = useHistory()
+    useProtectedPage()
 
     useEffect(() => {
         const token = localStorage.getItem('token')

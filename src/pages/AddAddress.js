@@ -16,21 +16,20 @@ const AddAdress = () =>{
     const history = useHistory()
 
     const {  setters } = useContext(IfutureContext)
-    // const history = useHistory()
 
     useEffect(() => {
         setters.setPage("address")
-        console.log(headers)
+       
     }, [])
 
     const [form, onChange] = useForm({ street: "" ,number:"",neighbourhood:"",city:"",state:"",complement:""})
 
     const putAdress = async (event)=>{
         event.preventDefault()
-        console.log(form)
+        
         try {
             const response = await axios.put(`${baseURL}/address`, form , {headers:{auth:localStorage.getItem('token')}})
-            console.log(response)
+          
             localStorage.setItem("token",response.data.token)
 
             localStorage.setItem("carrinho",'[]')

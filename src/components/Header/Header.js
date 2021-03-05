@@ -11,7 +11,7 @@ export const Header = () => {
 
     const { states, requests } = useContext(IfutureContext)
 
-    if(states.page == "login"){
+    if(states.page === "login"){
         return (
         <NavBar style={{borderBottom:'none'}}/>
         )
@@ -65,15 +65,7 @@ export const Header = () => {
             }
         </NavBar>
         )
-    // } else if(states.page === "home") {
-    //     return (
-    //     <NavBar>
-    //         <Back 
-    //             src={back} 
-    //             onClick={() => goToBack(history)}
-    //         />
-    //     </NavBar>
-    //     )
+
     } else if(states.page === 'profile/edit/address') {
         return (
         <NavBar>

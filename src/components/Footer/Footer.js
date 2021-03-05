@@ -14,7 +14,7 @@ export const Footer = () => {
 
     const history=useHistory()
 
-    const { states, setters, requests } = useContext(IfutureContext)
+    const { states,  } = useContext(IfutureContext)
 
     if(states.page === "feed") {
         return (

@@ -53,8 +53,7 @@ const ModalBox = (props) => {
 
           :
           <>
-            {/* {console.log(c)}
-        {console.log(props.product)} */}
+        
             <ButtonAddCart onClick={() => {
               props.toggleDropdown(props.product)
               switchOpen()
@@ -73,7 +72,7 @@ const ModalBox = (props) => {
           <ModalTitle>Selecione a quantidade desejada</ModalTitle>
 
           <Select name="quantity" onChange={onChangeQuantity}>
-            {console.log (Select)}
+          
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

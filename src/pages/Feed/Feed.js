@@ -30,7 +30,7 @@ const Feed = () => {
 
   useEffect(() => {
     setters.setPage("feed");
-    console.log(localStorage.getItem("token"));
+  
     const token = localStorage.getItem("token");
     if (token) {
       getRestaurants(token);
@@ -52,13 +52,11 @@ const Feed = () => {
   const history = useHistory();
 
   async function getRestaurants(token) {
-    // const headers1 = {auth:localStorage.getItem("token")}
-    // console.log("çlksdjfalksdhjf",headers1.auth)
+
     await axios
       .get(`${baseURL}/restaurants`, { headers: { auth: token } })
       .then((response) => setRestaurantsList(response.data.restaurants))
       .catch(() => console.log("deu ruim"));
-    // setRestaurantsList(response.data.restaurants)
   }
 
   const getHeader = () => {
@@ -71,7 +69,7 @@ const Feed = () => {
 
     for (let button of divv) {
       button.classList.remove("active");
-      console.log(button);
+  
     }
 
     event.target.classList.add("active");
@@ -128,42 +126,6 @@ const Feed = () => {
     }
   
 
-  // const filterListButton = () => {
-  //   if (restaurantsList && restaurantsList.length > 0) {
-  //     if (currentCategory !== null) {
-  //       const listCategory = restaurantsList.filter((rest) =>
-  //         rest.category.toLowerCase().includes(currentCategory.toLowerCase())
-  //       );
-  //       setListCategoryState(listCategory);
-  //       setFilteredRestaurantsList(listCategory);
-  //     } else {
-  //       setListCategoryState(restaurantsList);
-  //       setFilteredRestaurantsList(restaurantsList);
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   // setters.setPage("feed")
-  //   // console.log(headers)
-  //   // getRestaurants()
-  // }, [headers]);
-
-  // useEffect(() => {
-  //   clear();
-  // }, [states.searchPage]);
-
-  // useEffect(() => {
-  //   filterListInput();
-  // }, [form]);
-
-  // useEffect(() => {
-  //   filterListButton();
-  // }, [currentCategory]);
-
-  // const goToDetails = (id) => {
-  //   goTo(history, "/restaurant-detail", `/${id}`);
-  // };
 
   const onSearchPage = () => {
     setters.setSearchPage(true);
@@ -171,7 +133,7 @@ const Feed = () => {
     setFilteredRestaurantsList(restaurantsList);
   };
 
-  // const page = () =>
+  
 
   return (
     <>
@@ -250,7 +212,7 @@ const Feed = () => {
                 })
               : restaurantsList &&
                 restaurantsList.map((restaurant) => {
-                  // console.log(restaurant)
+                
                   return (
                     <BoxCard onClick={() => goToDetails(restaurant.id)}>
                       <CardImage src={restaurant.logoUrl} />
