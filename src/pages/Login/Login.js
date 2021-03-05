@@ -27,15 +27,17 @@ const Login = (props) => {
         event.preventDefault()
         try {
             const response = await axios.post(`${baseURL}/login`, form)
-            console.log(response)
+            console.log(response.data.token)
             localStorage.setItem("token", response.data.token)
+            localStorage.setItem("carrinho", "[]")
 
             if ("token" === ''){
             goTo(history, "/home", "")
             clear()
             }
             else {
-                goTo(history, "/feed","")
+                setTimeout(goTo(history, "/feed" ,"", 300))
+            //    goTo(history, "/feed","")
             }
         } catch (error) {
             console.log(error)
