@@ -1,15 +1,9 @@
-Projeto final - módulo de Front-End do curso FullStack da Labenu. 
+Projeto final - Módulo de Front-End do curso FullStack da Labenu. 
 
-Trata-se de uma versão de um aplicativo tipo Rappy, UberEats e Ifood. Foi realizado em grupo cujos integrantes são:
+Inspirado no aplicativo de entregas iFood, fiz um projeto que vai de cadastro, login, e até o pedido (não em um restaurante real, mas em um que está no banco de dados)
 
-*Artur Nicolaiewsky 
-
-*Felipe Moura 
-
-*Will Ferreira 
-
-*Douglas Florido 
-
-*Diego Galdino 
-
-Link do Surge: youthful-motion.surge.sh
+-ReactJs
+-Javascript
+-Styled-Components
+-Hooks
+-Routes
